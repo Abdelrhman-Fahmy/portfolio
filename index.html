@@ -1,0 +1,1401 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Abdelrahman Mohamed Fahmy Abdelal - AI Engineering Student & Machine Learning Specialist Portfolio">
+    <meta name="keywords" content="AI Engineer, Machine Learning, Python, Data Science, Portfolio">
+    <meta name="author" content="Abdelrahman Fahmy">
+    <title>Abdelrahman Fahmy | AI Engineer & ML Specialist</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        arabic: ['Cairo', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            200: '#bfdbfe',
+                            300: '#93c5fd',
+                            400: '#60a5fa',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#1e3a8a',
+                            950: '#172554',
+                        },
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 1s ease-out',
+                        'slide-up': 'slideUp 1s ease-out',
+                        'slide-down': 'slideDown 1s ease-out',
+                        'slide-left': 'slideLeft 1s ease-out',
+                        'slide-right': 'slideRight 1s ease-out',
+                        'scale-in': 'scaleIn 0.8s ease-out',
+                        'gradient': 'gradient 8s linear infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                        'spin-slow': 'spin 8s linear infinite',
+                        'bounce-slow': 'bounce 3s infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(50px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                        slideDown: {
+                            '0%': { transform: 'translateY(-50px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                        slideLeft: {
+                            '0%': { transform: 'translateX(50px)', opacity: '0' },
+                            '100%': { transform: 'translateX(0)', opacity: '1' },
+                        },
+                        slideRight: {
+                            '0%': { transform: 'translateX(-50px)', opacity: '0' },
+                            '100%': { transform: 'translateX(0)', opacity: '1' },
+                        },
+                        scaleIn: {
+                            '0%': { transform: 'scale(0.8)', opacity: '0' },
+                            '100%': { transform: 'scale(1)', opacity: '1' },
+                        },
+                        gradient: {
+                            '0%, 100%': { backgroundPosition: '0% 50%' },
+                            '50%': { backgroundPosition: '100% 50%' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        glow: {
+                            '0%': { boxShadow: '0 0 5px rgba(59, 130, 246, 0.5), 0 0 10px rgba(59, 130, 246, 0.3)' },
+                            '100%': { boxShadow: '0 0 20px rgba(59, 130, 246, 0.8), 0 0 40px rgba(59, 130, 246, 0.5)' },
+                        }
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #3b82f6, #2563eb);
+            border-radius: 6px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, #2563eb, #1d4ed8);
+        }
+        
+        /* Glassmorphism */
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .glass-dark {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .glass-card {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Gradient Text */
+        .gradient-text {
+            background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .gradient-text-animated {
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899, #3b82f6);
+            background-size: 300% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient 4s linear infinite;
+        }
+        
+        /* Background Effects */
+        .hero-bg {
+            background: radial-gradient(circle at 30% 20%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 60%, rgba(139, 92, 246, 0.12) 0%, transparent 50%),
+                        radial-gradient(circle at 50% 80%, rgba(236, 72, 153, 0.1) 0%, transparent 50%);
+        }
+        
+        .tech-grid {
+            background-image: 
+                linear-gradient(rgba(59, 130, 246, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(59, 130, 246, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        
+        /* Hover Effects */
+        .hover-lift {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .hover-lift:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(59, 130, 246, 0.3);
+        }
+        
+        .hover-glow:hover {
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.6);
+        }
+        
+        /* Animated Gradient Border */
+        .gradient-border {
+            position: relative;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899, #3b82f6);
+            background-size: 300% 100%;
+            animation: gradient 4s linear infinite;
+        }
+        
+        .gradient-border::before {
+            content: '';
+            position: absolute;
+            inset: 2px;
+            background: rgba(15, 23, 42, 0.95);
+            border-radius: inherit;
+        }
+        
+        /* Section Animations */
+        .section-fade {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        
+        .section-fade.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Skill Bar Animation */
+        .skill-bar {
+            width: 0;
+            transition: width 2s ease-out;
+        }
+        
+        .skill-bar.animate {
+            width: var(--skill-width);
+        }
+        
+        /* Custom Selection */
+        ::selection {
+            background: rgba(59, 130, 246, 0.4);
+            color: white;
+        }
+        
+        /* Particle Background */
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        .particle {
+            position: absolute;
+            background: rgba(59, 130, 246, 0.3);
+            border-radius: 50%;
+            animation: float 10s infinite ease-in-out;
+        }
+        
+        /* Typing Effect */
+        .typing-effect {
+            overflow: hidden;
+            border-right: 3px solid rgba(59, 130, 246, 0.8);
+            white-space: nowrap;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: rgba(59, 130, 246, 0.8) }
+        }
+        
+        /* Button Ripple Effect */
+        .ripple {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .ripple::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .ripple:active::after {
+            width: 300px;
+            height: 300px;
+        }
+        
+        /* RTL Support */
+        [dir="rtl"] .font-sans {
+            font-family: 'Cairo', sans-serif;
+        }
+        
+        /* Loading Animation */
+        .loader {
+            width: 48px;
+            height: 48px;
+            border: 5px solid rgba(59, 130, 246, 0.2);
+            border-bottom-color: #3b82f6;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        /* Smooth Transitions */
+        * {
+            transition: background-color 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased overflow-x-hidden">
+    
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 glass-dark transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer group" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 flex items-center justify-center shadow-lg shadow-blue-500/30 group-hover:shadow-blue-500/50 transition-all duration-300 group-hover:scale-110">
+                        <i data-lucide="brain" class="w-6 h-6 text-white"></i>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-bold text-xl tracking-tight" data-i18n="logo">Abdelrahman</span>
+                        <span class="text-xs text-blue-400" data-i18n="tagline">AI Engineer</span>
+                    </div>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8 rtl:space-x-reverse">
+                    <a href="#home" class="text-sm font-medium hover:text-blue-400 transition-colors relative group" data-i18n="nav_home">
+                        Home
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-400 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                    <a href="#about" class="text-sm font-medium hover:text-blue-400 transition-colors relative group" data-i18n="nav_about">
+                        About
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-400 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                    <a href="#skills" class="text-sm font-medium hover:text-blue-400 transition-colors relative group" data-i18n="nav_skills">
+                        Skills
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-400 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                    <a href="#projects" class="text-sm font-medium hover:text-blue-400 transition-colors relative group" data-i18n="nav_projects">
+                        Projects
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-400 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                    <a href="#contact" class="text-sm font-medium hover:text-blue-400 transition-colors relative group" data-i18n="nav_contact">
+                        Contact
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-400 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                </div>
+                
+                <!-- Controls -->
+                <div class="hidden md:flex items-center gap-3">
+                    <!-- Language Toggle -->
+                    <button id="langToggle" class="flex items-center gap-2 px-4 py-2 rounded-lg glass hover:bg-white/10 transition-all text-sm font-medium hover-glow">
+                        <i data-lucide="globe" class="w-4 h-4"></i>
+                        <span id="currentLang">EN</span>
+                    </button>
+                    
+                    <!-- Dark Mode Toggle -->
+                    <button id="themeToggle" class="p-2.5 rounded-lg glass hover:bg-white/10 transition-all hover-glow">
+                        <i data-lucide="sun" class="w-5 h-5 hidden" id="sunIcon"></i>
+                        <i data-lucide="moon" class="w-5 h-5" id="moonIcon"></i>
+                    </button>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center gap-3">
+                    <button id="mobileLangToggle" class="px-3 py-2 rounded-lg glass hover:bg-white/10 transition-all">
+                        <span class="text-sm font-bold">EN</span>
+                    </button>
+                    <button id="mobileMenuBtn" class="p-2 rounded-lg glass hover:bg-white/10 transition-all">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden glass-dark border-t border-white/5">
+            <div class="px-4 pt-2 pb-6 space-y-1">
+                <a href="#home" class="block px-4 py-3 rounded-lg hover:bg-white/5 text-base font-medium transition-all" data-i18n="nav_home">Home</a>
+                <a href="#about" class="block px-4 py-3 rounded-lg hover:bg-white/5 text-base font-medium transition-all" data-i18n="nav_about">About</a>
+                <a href="#skills" class="block px-4 py-3 rounded-lg hover:bg-white/5 text-base font-medium transition-all" data-i18n="nav_skills">Skills</a>
+                <a href="#projects" class="block px-4 py-3 rounded-lg hover:bg-white/5 text-base font-medium transition-all" data-i18n="nav_projects">Projects</a>
+                <a href="#contact" class="block px-4 py-3 rounded-lg hover:bg-white/5 text-base font-medium transition-all" data-i18n="nav_contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center px-6 bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950 relative overflow-hidden">
+        <!-- Animated Background -->
+        <div class="absolute inset-0 pointer-events-none z-0">
+            <div class="w-[800px] h-[800px] bg-gradient-to-br from-blue-600/20 via-purple-600/15 to-transparent rounded-full blur-3xl absolute left-[-300px] top-[-300px] animate-float"></div>
+            <div class="w-[600px] h-[600px] bg-gradient-to-tr from-purple-600/15 via-pink-500/10 to-transparent rounded-full blur-3xl absolute right-[-200px] bottom-[-200px] animate-float" style="animation-delay: 2s;"></div>
+            <div class="tech-grid absolute inset-0 opacity-30"></div>
+        </div>
+        
+        <div class="max-w-4xl w-full text-center space-y-8 z-10 animate-fade-in">
+            <!-- Status Badge -->
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-green-500/30 mb-4 animate-slide-down">
+                <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+                <span class="text-sm text-green-400 font-medium" data-i18n="available">Available for opportunities</span>
+            </div>
+            
+            <!-- Main Heading -->
+            <div class="space-y-4">
+                <h1 class="text-6xl md:text-7xl lg:text-8xl font-extrabold leading-tight tracking-tight gradient-text-animated animate-scale-in">
+                    Abdelrahman Fahmy
+                </h1>
+                <h2 class="text-2xl md:text-3xl lg:text-4xl font-semibold text-slate-300 animate-slide-up" style="animation-delay: 0.2s;">
+                    <span data-i18n="hero_title">AI Engineering Student</span><br>
+                    <span class="gradient-text" data-i18n="hero_subtitle">Machine Learning Specialist</span>
+                </h2>
+            </div>
+            
+            <!-- Description -->
+            <p class="text-lg md:text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed animate-slide-up" style="animation-delay: 0.4s;" data-i18n="hero_desc">
+                AI Engineer with a strong foundation in artificial intelligence, data analysis, and intelligent systems development. Experienced in building real-world projects using Python, Machine Learning, and web technologies.
+            </p>
+            
+            <!-- CTA Buttons -->
+            <div class="flex flex-wrap justify-center gap-4 pt-4 animate-slide-up" style="animation-delay: 0.6s;">
+                <a href="#projects" class="px-8 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 font-semibold hover:-translate-y-1 hover:shadow-2xl hover:shadow-blue-500/40 transition-all duration-300 ripple group">
+                    <span data-i18n="view_work">View My Work</span>
+                    <i data-lucide="arrow-right" class="w-5 h-5 inline-block ml-2 group-hover:translate-x-1 transition-transform"></i>
+                </a>
+                <a href="Abdelrhman Fahmy.pdf" download class="px-8 py-4 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 font-semibold hover:-translate-y-1 hover:shadow-2xl hover:shadow-purple-500/40 transition-all duration-300 ripple group">
+                    <i data-lucide="download" class="w-5 h-5 inline-block mr-2 group-hover:-translate-y-1 transition-transform"></i>
+                    <span data-i18n="download_cv">Download CV</span>
+                </a>
+                <a href="#contact" class="px-8 py-4 rounded-xl glass border border-slate-700 font-semibold hover:-translate-y-1 hover:shadow-xl hover:bg-white/10 transition-all duration-300 ripple">
+                    <span data-i18n="get_in_touch">Get In Touch</span>
+                </a>
+            </div>
+            
+            <!-- Social Links -->
+            <div class="flex justify-center gap-6 pt-8 animate-slide-up" style="animation-delay: 0.8s;">
+                <a href="https://github.com/Abdelrhman-Fahmy" target="_blank" aria-label="GitHub" class="w-12 h-12 rounded-full glass hover:bg-white/10 flex items-center justify-center transition-all hover:scale-110 hover-glow">
+                    <i data-lucide="github" class="w-6 h-6"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/abdelrhmanfahmy1/" target="_blank" aria-label="LinkedIn" class="w-12 h-12 rounded-full glass hover:bg-white/10 flex items-center justify-center transition-all hover:scale-110 hover-glow">
+                    <i data-lucide="linkedin" class="w-6 h-6"></i>
+                </a>
+                <a href="mailto:abdelrhmanfahmy40@gmail.com" aria-label="Email" class="w-12 h-12 rounded-full glass hover:bg-white/10 flex items-center justify-center transition-all hover:scale-110 hover-glow">
+                    <i data-lucide="mail" class="w-6 h-6"></i>
+                </a>
+            </div>
+            
+            <!-- Scroll Indicator -->
+            <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce-slow">
+                <i data-lucide="chevron-down" class="w-8 h-8 text-blue-400"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="relative py-32 bg-slate-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="section-fade">
+                <!-- Section Header -->
+                <div class="text-center mb-20">
+                    <span class="inline-block px-4 py-2 rounded-full glass border border-blue-500/30 text-sm font-semibold text-blue-400 tracking-wider uppercase mb-4" data-i18n="about_subtitle">About Me</span>
+                    <h3 class="text-5xl md:text-6xl font-bold text-white mb-6" data-i18n="about_title">Passionate About <span class="gradient-text">Intelligent Systems</span></h3>
+                    <p class="text-xl text-slate-400 max-w-3xl mx-auto" data-i18n="about_intro">Building the future with artificial intelligence and machine learning</p>
+                </div>
+                
+                <div class="grid lg:grid-cols-2 gap-16 items-center">
+                    <!-- Left Column - Image & Stats -->
+                    <div class="space-y-8">
+                        <div class="glass-card rounded-3xl p-8 hover-lift">
+                            <div class="w-full aspect-square rounded-2xl bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 flex items-center justify-center mb-8 overflow-hidden relative group">
+                                <div class="absolute inset-0 tech-grid opacity-20"></div>
+                                <div class="relative z-10 w-48 h-48 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform duration-500">
+                                    <i data-lucide="user" class="w-24 h-24 text-white"></i>
+                                </div>
+                            </div>
+                            
+                            <!-- Stats Grid -->
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="glass rounded-2xl p-6 text-center hover-lift">
+                                    <div class="text-4xl font-bold gradient-text mb-2">2024</div>
+                                    <div class="text-sm text-slate-400" data-i18n="year_started">Journey Started</div>
+                                </div>
+                                <div class="glass rounded-2xl p-6 text-center hover-lift">
+                                    <div class="text-4xl font-bold gradient-text mb-2">3+</div>
+                                    <div class="text-sm text-slate-400" data-i18n="projects_completed">Projects Done</div>
+                                </div>
+                                <div class="glass rounded-2xl p-6 text-center hover-lift">
+                                    <div class="text-4xl font-bold gradient-text mb-2">10+</div>
+                                    <div class="text-sm text-slate-400" data-i18n="skills_mastered">Skills</div>
+                                </div>
+                                <div class="glass rounded-2xl p-6 text-center hover-lift">
+                                    <div class="text-4xl font-bold gradient-text mb-2">100%</div>
+                                    <div class="text-sm text-slate-400" data-i18n="dedication">Dedication</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Right Column - Content -->
+                    <div class="space-y-8">
+                        <!-- Education Card -->
+                        <div class="glass-card rounded-2xl p-6 border-l-4 border-blue-500 hover-lift">
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 rounded-xl bg-blue-500/20 flex items-center justify-center flex-shrink-0">
+                                    <i data-lucide="graduation-cap" class="w-6 h-6 text-blue-400"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-white font-bold text-lg mb-1" data-i18n="education_degree">Bachelor of Artificial Intelligence</h4>
+                                    <p class="text-slate-400 text-sm mb-1" data-i18n="education_dept">Information Technology Department</p>
+                                    <p class="text-slate-500 text-sm" data-i18n="education_period">Faculty of AI | Sep 2024 – Present</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Description -->
+                        <div class="space-y-6">
+                            <p class="text-lg text-slate-300 leading-relaxed" data-i18n="about_p1">
+                                I am Abdelrahman Mohamed Fahmy Abdelal, an AI Engineering student with a strong foundation in artificial intelligence, data analysis, and intelligent systems development. My journey started in September 2024, and I've been building real-world projects using Python, Machine Learning, and web technologies.
+                            </p>
+                            <p class="text-lg text-slate-300 leading-relaxed" data-i18n="about_p2">
+                                Currently pursuing my bachelor's degree, I specialize in applying AI concepts to solve practical problems. My coursework includes Artificial Intelligence Programming, Data Structures, Databases, Operating Systems, and Machine Learning Fundamentals.
+                            </p>
+                            <p class="text-lg text-slate-300 leading-relaxed" data-i18n="about_p3">
+                                I am highly motivated, detail-oriented, and passionate about solving complex problems. My goal is to transform ideas into scalable, data-driven solutions while maintaining a continuous learning mindset in the rapidly evolving field of AI.
+                            </p>
+                        </div>
+                        
+                        <!-- Key Strengths -->
+                        <div class="glass-card rounded-2xl p-6 border-l-4 border-purple-500 hover-lift">
+                            <h4 class="text-white font-bold text-lg mb-4 flex items-center gap-2">
+                                <i data-lucide="star" class="w-5 h-5 text-purple-400"></i>
+                                <span data-i18n="key_strengths">Key Strengths</span>
+                            </h4>
+                            <ul class="space-y-3">
+                                <li class="flex items-start gap-3">
+                                    <i data-lucide="check-circle" class="w-5 h-5 text-purple-400 mt-0.5 flex-shrink-0"></i>
+                                    <span class="text-slate-300" data-i18n="strength1">Building intelligent, data-driven systems</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <i data-lucide="check-circle" class="w-5 h-5 text-purple-400 mt-0.5 flex-shrink-0"></i>
+                                    <span class="text-slate-300" data-i18n="strength2">Applying AI concepts to real-world problems</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <i data-lucide="check-circle" class="w-5 h-5 text-purple-400 mt-0.5 flex-shrink-0"></i>
+                                    <span class="text-slate-300" data-i18n="strength3">Strong analytical and logical thinking</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <i data-lucide="check-circle" class="w-5 h-5 text-purple-400 mt-0.5 flex-shrink-0"></i>
+                                    <span class="text-slate-300" data-i18n="strength4">Continuous learning mindset</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Tech Tags -->
+                        <div class="flex flex-wrap gap-3">
+                            <span class="px-5 py-2.5 rounded-full glass border border-blue-500/30 text-sm font-medium text-blue-300 hover:bg-blue-500/10 transition-all cursor-default">Python</span>
+                            <span class="px-5 py-2.5 rounded-full glass border border-purple-500/30 text-sm font-medium text-purple-300 hover:bg-purple-500/10 transition-all cursor-default">Machine Learning</span>
+                            <span class="px-5 py-2.5 rounded-full glass border border-indigo-500/30 text-sm font-medium text-indigo-300 hover:bg-indigo-500/10 transition-all cursor-default">Data Analysis</span>
+                            <span class="px-5 py-2.5 rounded-full glass border border-green-500/30 text-sm font-medium text-green-300 hover:bg-green-500/10 transition-all cursor-default">SQL</span>
+                            <span class="px-5 py-2.5 rounded-full glass border border-pink-500/30 text-sm font-medium text-pink-300 hover:bg-pink-500/10 transition-all cursor-default">Flask</span>
+                            <span class="px-5 py-2.5 rounded-full glass border border-cyan-500/30 text-sm font-medium text-cyan-300 hover:bg-cyan-500/10 transition-all cursor-default">Tailwind CSS</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="relative py-32 bg-slate-950">
+        <div class="absolute inset-0 tech-grid opacity-20"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-slate-950 via-transparent to-slate-950"></div>
+        
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="section-fade">
+                <!-- Section Header -->
+                <div class="text-center mb-20">
+                    <span class="inline-block px-4 py-2 rounded-full glass border border-blue-500/30 text-sm font-semibold text-blue-400 tracking-wider uppercase mb-4" data-i18n="skills_subtitle">Expertise</span>
+                    <h3 class="text-5xl md:text-6xl font-bold text-white mb-6" data-i18n="skills_title">Technical <span class="gradient-text">Skills</span></h3>
+                    <p class="text-xl text-slate-400 max-w-3xl mx-auto" data-i18n="skills_desc">Comprehensive toolkit for building end-to-end AI solutions</p>
+                </div>
+                
+                <!-- Skills Grid -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Skill Card 1 -->
+                    <div class="glass-card rounded-3xl p-8 hover-lift group">
+                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
+                            <i data-lucide="code" class="w-8 h-8 text-white"></i>
+                        </div>
+                        <h4 class="text-2xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors" data-i18n="skill_python">Python Programming</h4>
+                        <p class="text-slate-400 mb-6 leading-relaxed" data-i18n="skill_python_desc">Core language for AI/ML development and data processing</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-xs px-3 py-1.5 rounded-full bg-blue-500/20 text-blue-300 border border-blue-500/30">Pandas</span>
+                            <span class="text-xs px-3 py-1.5 rounded-full bg-blue-500/20 text-blue-300 border border-blue-500/30">NumPy</span>
+                            <span class="text-xs px-3 py-1.5 rounded-full bg-blue-500/20 text-blue-300 border border-blue-500/30">Jupyter</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Skill Card 2 -->
+                    <div class="glass-card rounded-3xl p-8 hover-lift group">
+                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
+                            <i data-lucide="brain" class="w-8 h-8 text-white"></i>
+                        </div>
+                        <h4 class="text-2xl font-bold text-white mb-3 group-hover:text-purple-400 transition-colors" data-i18n="skill_ml">Machine Learning</h4>
+                        <p class="text-slate-400 mb-6 leading-relaxed" data-i18n="skill_ml_desc">Fundamentals of ML algorithms, model training, and predictive systems</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-xs px-3 py-1.5 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30">Scikit-learn</span>
+                            <span class="text-xs px-3 py-1.5 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30">Regression</span>
+                            <span class="text-xs px-3 py-1.5 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30">Classification</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Skill Card 3 -->
+                    <div class="glass-card rounded-3xl p-8 hover-lift group">
+                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
+                            <i data-lucide="bar-chart-2" class="w-8 h-8 text-white"></i>
+                        </div>
+                        <h4 class="text-2xl font-bold text-white mb-3 group-hover:text-green-400 transition-colors" data-i18n="skill_da">Data Analysis</h4>
+                        <p class="text-slate-400 mb-6 leading-relaxed" data-i18n="skill_da_desc">Analyzing datasets, extracting insights, and creating visualizations</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-xs px-3 py-1.5 rounded-full bg-green-500/20 text-green-300 border border-green-500/30">Power BI developer</span>
+                            <span class="text-xs px-3 py-1.5 rounded-full bg-green-500/20 text-green-300 border border-green-500/30">Matplotlib</span>
+                            <span class="text-xs px-3 py-1.5 rounded-full bg-green-500/20 text-green-300 border border-green-500/30">Seaborn</span>
+                            <span class="text-xs px-3 py-1.5 rounded-full bg-green-500/20 text-green-300 border border-green-500/30">EDA</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Skill Card 4 -->
+                    <div class="glass-card rounded-3xl p-8 hover-lift group">
+                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-pink-500 to-pink-600 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
+                            <i data-lucide="database" class="w-8 h-8 text-white"></i>
+                        </div>
+                        <h4 class="text-2xl font-bold text-white mb-3 group-hover:text-pink-400 transition-colors" data-i18n="skill_sql">SQL & Databases</h4>
+                        <p class="text-slate-400 mb-6 leading-relaxed" data-i18n="skill_sql_desc">Database design, querying, and management for data-driven applications</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-xs px-3 py-1.5 rounded-full bg-pink-500/20 text-pink-300 border border-pink-500/30">MySQL</span>
+                            <span class="text-xs px-3 py-1.5 rounded-full bg-pink-500/20 text-pink-300 border border-pink-500/30">PostgreSQL</span>
+                            <span class="text-xs px-3 py-1.5 rounded-full bg-pink-500/20 text-pink-300 border border-pink-500/30">Design</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Skill Card 5 -->
+                    <div class="glass-card rounded-3xl p-8 hover-lift group">
+                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
+                            <i data-lucide="globe" class="w-8 h-8 text-white"></i>
+                        </div>
+                        <h4 class="text-2xl font-bold text-white mb-3 group-hover:text-orange-400 transition-colors" data-i18n="skill_web">Web Integration</h4>
+                        <p class="text-slate-400 mb-6 leading-relaxed" data-i18n="skill_web_desc">Building web interfaces and backend APIs</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-xs px-3 py-1.5 rounded-full bg-orange-500/20 text-orange-300 border border-orange-500/30">HTML/CSS</span>
+                            <span class="text-xs px-3 py-1.5 rounded-full bg-orange-500/20 text-orange-300 border border-orange-500/30">Flask</span>
+                            <span class="text-xs px-3 py-1.5 rounded-full bg-orange-500/20 text-orange-300 border border-orange-500/30">Tailwind</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Skill Card 6 -->
+                    <div class="glass-card rounded-3xl p-8 hover-lift group">
+                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-cyan-500 to-cyan-600 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
+                            <i data-lucide="puzzle" class="w-8 h-8 text-white"></i>
+                        </div>
+                        <h4 class="text-2xl font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors" data-i18n="skill_ps">Problem Solving</h4>
+                        <p class="text-slate-400 mb-6 leading-relaxed" data-i18n="skill_ps_desc">Algorithmic thinking and logical approach to complex challenges</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-xs px-3 py-1.5 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">Algorithms</span>
+                            <span class="text-xs px-3 py-1.5 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">Data Structures</span>
+                            <span class="text-xs px-3 py-1.5 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">Logic</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="relative py-32 bg-slate-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="section-fade">
+                <!-- Section Header -->
+                <div class="text-center mb-20">
+                    <span class="inline-block px-4 py-2 rounded-full glass border border-blue-500/30 text-sm font-semibold text-blue-400 tracking-wider uppercase mb-4" data-i18n="projects_subtitle">Portfolio</span>
+                    <h3 class="text-5xl md:text-6xl font-bold text-white mb-6" data-i18n="projects_title">Featured <span class="gradient-text">Projects</span></h3>
+                    <p class="text-xl text-slate-400 max-w-3xl mx-auto" data-i18n="projects_desc">Real-world AI applications and research projects</p>
+                </div>
+                
+                <!-- Projects Grid -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                    <!-- Project 1 -->
+                    <div class="group glass-card rounded-3xl overflow-hidden hover-lift">
+                        <div class="relative h-56 overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-br from-pink-600 via-rose-600 to-red-600 flex items-center justify-center">
+                                <i data-lucide="activity" class="w-20 h-20 text-white/30 group-hover:scale-125 transition-transform duration-500"></i>
+                            </div>
+                            <div class="absolute top-4 right-4">
+                                <span class="px-4 py-2 rounded-full bg-white/20 text-white text-xs font-semibold backdrop-blur-sm border border-white/30" data-i18n="project1_date">April 2025</span>
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <div class="flex gap-3">
+                                    <a href="#" class="px-4 py-2 bg-white text-slate-900 rounded-lg font-medium text-sm hover:scale-110 transition-transform">
+                                        <i data-lucide="eye" class="w-4 h-4 inline-block mr-1"></i>
+                                        View
+                                    </a>
+                                    <a href="#" class="px-4 py-2 glass text-white rounded-lg font-medium text-sm hover:scale-110 transition-transform">
+                                        <i data-lucide="github" class="w-4 h-4 inline-block mr-1"></i>
+                                        Code
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-8">
+                            <h4 class="text-2xl font-bold text-white mb-3 group-hover:text-pink-400 transition-colors" data-i18n="project1_title">Breast Cancer Detection</h4>
+                            <p class="text-slate-400 mb-6 leading-relaxed" data-i18n="project1_desc">ML-powered predictive system using Logistic Regression for early detection</p>
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="text-xs px-3 py-1.5 rounded-full bg-pink-500/20 text-pink-300 border border-pink-500/30">Logistic Regression</span>
+                                <span class="text-xs px-3 py-1.5 rounded-full bg-blue-500/20 text-blue-300 border border-blue-500/30">Python</span>
+                                <span class="text-xs px-3 py-1.5 rounded-full bg-orange-500/20 text-orange-300 border border-orange-500/30">Flask</span>
+                            </div>
+                            <div class="flex items-center justify-between pt-6 border-t border-white/10">
+                                <span class="text-sm text-slate-500">Machine Learning</span>
+                                <i data-lucide="arrow-right" class="w-5 h-5 text-blue-400 group-hover:translate-x-2 transition-transform"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 2 -->
+                    <div class="group glass-card rounded-3xl overflow-hidden hover-lift">
+                        <div class="relative h-56 overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-br from-blue-600 via-cyan-600 to-teal-600 flex items-center justify-center">
+                                <i data-lucide="cpu" class="w-20 h-20 text-white/30 group-hover:scale-125 transition-transform duration-500"></i>
+                            </div>
+                            <div class="absolute top-4 right-4">
+                                <span class="px-4 py-2 rounded-full bg-white/20 text-white text-xs font-semibold backdrop-blur-sm border border-white/30" data-i18n="project2_date">February 2025</span>
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <div class="flex gap-3">
+                                    <a href="#" class="px-4 py-2 bg-white text-slate-900 rounded-lg font-medium text-sm hover:scale-110 transition-transform">
+                                        <i data-lucide="eye" class="w-4 h-4 inline-block mr-1"></i>
+                                        View
+                                    </a>
+                                    <a href="#" class="px-4 py-2 glass text-white rounded-lg font-medium text-sm hover:scale-110 transition-transform">
+                                        <i data-lucide="github" class="w-4 h-4 inline-block mr-1"></i>
+                                        Code
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-8">
+                            <h4 class="text-2xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors" data-i18n="project2_title">Expert System</h4>
+                            <p class="text-slate-400 mb-6 leading-relaxed" data-i18n="project2_desc">AI-powered PC troubleshooting system with intelligent decision rules</p>
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="text-xs px-3 py-1.5 rounded-full bg-blue-500/20 text-blue-300 border border-blue-500/30">Expert Systems</span>
+                                <span class="text-xs px-3 py-1.5 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">AI Logic</span>
+                                <span class="text-xs px-3 py-1.5 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30">Rules Engine</span>
+                            </div>
+                            <div class="flex items-center justify-between pt-6 border-t border-white/10">
+                                <span class="text-sm text-slate-500">Artificial Intelligence</span>
+                                <i data-lucide="arrow-right" class="w-5 h-5 text-blue-400 group-hover:translate-x-2 transition-transform"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 3 -->
+                    <div class="group glass-card rounded-3xl overflow-hidden hover-lift">
+                        <div class="relative h-56 overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-br from-green-600 via-emerald-600 to-teal-600 flex items-center justify-center">
+                                <i data-lucide="bar-chart-3" class="w-20 h-20 text-white/30 group-hover:scale-125 transition-transform duration-500"></i>
+                            </div>
+                            <div class="absolute top-4 right-4">
+                                <span class="px-4 py-2 rounded-full bg-white/20 text-white text-xs font-semibold backdrop-blur-sm border border-white/30" data-i18n="project3_date">Ongoing</span>
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <div class="flex gap-3">
+                                    <a href="#" class="px-4 py-2 bg-white text-slate-900 rounded-lg font-medium text-sm hover:scale-110 transition-transform">
+                                        <i data-lucide="eye" class="w-4 h-4 inline-block mr-1"></i>
+                                        View
+                                    </a>
+                                    <a href="#" class="px-4 py-2 glass text-white rounded-lg font-medium text-sm hover:scale-110 transition-transform">
+                                        <i data-lucide="github" class="w-4 h-4 inline-block mr-1"></i>
+                                        Code
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-8">
+                            <h4 class="text-2xl font-bold text-white mb-3 group-hover:text-green-400 transition-colors" data-i18n="project3_title">Data Analysis Suite</h4>
+                            <p class="text-slate-400 mb-6 leading-relaxed" data-i18n="project3_desc">Comprehensive data analysis projects with advanced visualization</p>
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="text-xs px-3 py-1.5 rounded-full bg-green-500/20 text-green-300 border border-green-500/30">Pandas</span>
+                                <span class="text-xs px-3 py-1.5 rounded-full bg-yellow-500/20 text-yellow-300 border border-yellow-500/30">Matplotlib</span>
+                                <span class="text-xs px-3 py-1.5 rounded-full bg-blue-500/20 text-blue-300 border border-blue-500/30">Seaborn</span>
+                            </div>
+                            <div class="flex items-center justify-between pt-6 border-t border-white/10">
+                                <span class="text-sm text-slate-500">Data Science</span>
+                                <i data-lucide="arrow-right" class="w-5 h-5 text-blue-400 group-hover:translate-x-2 transition-transform"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Coursework Card -->
+                <div class="glass-card rounded-3xl p-8 max-w-4xl mx-auto hover-lift">
+                    <h4 class="text-white font-bold text-2xl mb-6 flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center">
+                            <i data-lucide="book-open" class="w-6 h-6 text-white"></i>
+                        </div>
+                        <span data-i18n="coursework_title">Relevant Coursework</span>
+                    </h4>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
+                        <div class="px-5 py-3 rounded-xl glass border border-blue-500/30 hover:bg-blue-500/10 transition-all">
+                            <span class="text-blue-300 font-medium">AI Programming</span>
+                        </div>
+                        <div class="px-5 py-3 rounded-xl glass border border-purple-500/30 hover:bg-purple-500/10 transition-all">
+                            <span class="text-purple-300 font-medium">Data Structures</span>
+                        </div>
+                        <div class="px-5 py-3 rounded-xl glass border border-pink-500/30 hover:bg-pink-500/10 transition-all">
+                            <span class="text-pink-300 font-medium">Databases</span>
+                        </div>
+                        <div class="px-5 py-3 rounded-xl glass border border-green-500/30 hover:bg-green-500/10 transition-all">
+                            <span class="text-green-300 font-medium">Operating Systems</span>
+                        </div>
+                        <div class="px-5 py-3 rounded-xl glass border border-orange-500/30 hover:bg-orange-500/10 transition-all">
+                            <span class="text-orange-300 font-medium">ML Fundamentals</span>
+                        </div>
+                        <div class="px-5 py-3 rounded-xl glass border border-cyan-500/30 hover:bg-cyan-500/10 transition-all">
+                            <span class="text-cyan-300 font-medium">Algorithms</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- GitHub Link -->
+                <div class="text-center mt-12">
+                    <a href="https://github.com/Abdelrhman-Fahmy" target="_blank" class="inline-flex items-center gap-3 px-8 py-4 rounded-xl glass hover:bg-white/10 transition-all text-white font-semibold hover-lift">
+                        <i data-lucide="github" class="w-6 h-6"></i>
+                        <span data-i18n="view_all_projects">View All Projects on GitHub</span>
+                        <i data-lucide="external-link" class="w-5 h-5"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="relative py-32 bg-slate-950 hero-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="section-fade">
+                <!-- Section Header -->
+                <div class="text-center mb-20">
+                    <span class="inline-block px-4 py-2 rounded-full glass border border-blue-500/30 text-sm font-semibold text-blue-400 tracking-wider uppercase mb-4" data-i18n="contact_subtitle">Get In Touch</span>
+                    <h3 class="text-5xl md:text-6xl font-bold text-white mb-6" data-i18n="contact_title">Let's Work <span class="gradient-text">Together</span></h3>
+                    <p class="text-xl text-slate-400 max-w-3xl mx-auto" data-i18n="contact_desc">Have a project in mind or want to collaborate? Feel free to reach out.</p>
+                </div>
+                
+                <div class="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+                    <!-- Contact Info -->
+                    <div class="space-y-8">
+                        <div class="glass-card rounded-3xl p-10 hover-lift">
+                            <h4 class="text-3xl font-bold text-white mb-8" data-i18n="contact_info">Contact Information</h4>
+                            
+                            <div class="space-y-6">
+                                <!-- Email -->
+                                <div class="flex items-start gap-5 group">
+                                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                                        <i data-lucide="mail" class="w-6 h-6 text-white"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="text-white font-semibold text-lg mb-2" data-i18n="email">Email</h5>
+                                        <a href="mailto:abdelrhmanfahmy40@gmail.com" class="text-slate-400 hover:text-blue-400 transition-colors text-lg">abdelrhmanfahmy40@gmail.com</a>
+                                    </div>
+                                </div>
+                                
+                                <!-- Location -->
+                                <div class="flex items-start gap-5 group">
+                                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                                        <i data-lucide="map-pin" class="w-6 h-6 text-white"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="text-white font-semibold text-lg mb-2" data-i18n="location">Location</h5>
+                                        <p class="text-slate-400 text-lg" data-i18n="location_value">Egypt</p>
+                                    </div>
+                                </div>
+                                
+                                <!-- Availability -->
+                                <div class="flex items-start gap-5 group">
+                                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                                        <i data-lucide="briefcase" class="w-6 h-6 text-white"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="text-white font-semibold text-lg mb-2" data-i18n="availability">Availability</h5>
+                                        <p class="text-slate-400 text-lg" data-i18n="availability_value">Open for internships & freelance</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Social Links -->
+                            <div class="mt-10 pt-10 border-t border-white/10">
+                                <h5 class="text-white font-semibold text-lg mb-6" data-i18n="follow_me">Follow Me</h5>
+                                <div class="flex gap-4">
+                                    <a href="https://github.com/Abdelrhman-Fahmy" target="_blank" class="w-14 h-14 rounded-2xl glass hover:bg-white/10 flex items-center justify-center transition-all hover:scale-110 hover-glow group">
+                                        <i data-lucide="github" class="w-6 h-6 group-hover:text-blue-400 transition-colors"></i>
+                                    </a>
+                                    <a href="https://www.linkedin.com/in/abdelrhmanfahmy1/" target="_blank" class="w-14 h-14 rounded-2xl glass hover:bg-white/10 flex items-center justify-center transition-all hover:scale-110 hover-glow group">
+                                        <i data-lucide="linkedin" class="w-6 h-6 group-hover:text-blue-400 transition-colors"></i>
+                                    </a>
+                                    <a href="mailto:abdelrhmanfahmy40@gmail.com" class="w-14 h-14 rounded-2xl glass hover:bg-white/10 flex items-center justify-center transition-all hover:scale-110 hover-glow group">
+                                        <i data-lucide="mail" class="w-6 h-6 group-hover:text-blue-400 transition-colors"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Contact Form -->
+                    <div class="glass-card rounded-3xl p-10 hover-lift">
+                        <form id="contactForm" class="space-y-6">
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-300 mb-3" data-i18n="form_name">Name</label>
+                                <input type="text" required class="w-full px-5 py-4 rounded-xl bg-slate-900/70 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/50 transition-all" placeholder="John Doe">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-300 mb-3" data-i18n="form_email">Email</label>
+                                <input type="email" required class="w-full px-5 py-4 rounded-xl bg-slate-900/70 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/50 transition-all" placeholder="john@example.com">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-300 mb-3" data-i18n="form_subject">Subject</label>
+                                <input type="text" required class="w-full px-5 py-4 rounded-xl bg-slate-900/70 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/50 transition-all" placeholder="Project Inquiry">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-300 mb-3" data-i18n="form_message">Message</label>
+                                <textarea rows="5" required class="w-full px-5 py-4 rounded-xl bg-slate-900/70 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/50 transition-all resize-none" placeholder="Tell me about your project..."></textarea>
+                            </div>
+                            
+                            <button type="submit" class="w-full py-5 rounded-xl bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white font-bold text-lg hover:shadow-2xl hover:shadow-blue-500/30 transition-all hover:-translate-y-1 flex items-center justify-center gap-3 ripple group">
+                                <span data-i18n="send_message">Send Message</span>
+                                <i data-lucide="send" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="relative bg-slate-950 border-t border-white/5 pt-20 pb-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-12 mb-16">
+                <!-- Brand -->
+                <div class="md:col-span-2 space-y-6">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 flex items-center justify-center shadow-lg shadow-blue-500/30">
+                            <i data-lucide="brain" class="w-6 h-6 text-white"></i>
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="font-bold text-xl">Abdelrahman Fahmy</span>
+                            <span class="text-sm text-blue-400">AI Engineer</span>
+                        </div>
+                    </div>
+                    <p class="text-slate-400 leading-relaxed max-w-md" data-i18n="footer_desc">
+                        AI Engineering student passionate about building intelligent systems and pushing the boundaries of machine learning.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="https://github.com/Abdelrhman-Fahmy" target="_blank" class="w-12 h-12 rounded-xl glass hover:bg-white/10 flex items-center justify-center transition-all hover:scale-110 hover-glow">
+                            <i data-lucide="github" class="w-5 h-5"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/abdelrhmanfahmy1/" target="_blank" class="w-12 h-12 rounded-xl glass hover:bg-white/10 flex items-center justify-center transition-all hover:scale-110 hover-glow">
+                            <i data-lucide="linkedin" class="w-5 h-5"></i>
+                        </a>
+                        <a href="mailto:abdelrhmanfahmy40@gmail.com" class="w-12 h-12 rounded-xl glass hover:bg-white/10 flex items-center justify-center transition-all hover:scale-110 hover-glow">
+                            <i data-lucide="mail" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-6" data-i18n="quick_links">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#home" class="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-2 group">
+                            <i data-lucide="chevron-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                            <span data-i18n="nav_home">Home</span>
+                        </a></li>
+                        <li><a href="#about" class="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-2 group">
+                            <i data-lucide="chevron-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                            <span data-i18n="nav_about">About</span>
+                        </a></li>
+                        <li><a href="#projects" class="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-2 group">
+                            <i data-lucide="chevron-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                            <span data-i18n="nav_projects">Projects</span>
+                        </a></li>
+                        <li><a href="#contact" class="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-2 group">
+                            <i data-lucide="chevron-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                            <span data-i18n="nav_contact">Contact</span>
+                        </a></li>
+                    </ul>
+                </div>
+                
+                <!-- Technologies -->
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-6" data-i18n="technologies">Technologies</h4>
+                    <ul class="space-y-3 text-slate-400 text-sm">
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="check" class="w-4 h-4 text-blue-400"></i>
+                            Python / Scikit-learn
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="check" class="w-4 h-4 text-blue-400"></i>
+                            Pandas / NumPy
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="check" class="w-4 h-4 text-blue-400"></i>
+                            SQL / Databases
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="check" class="w-4 h-4 text-blue-400"></i>
+                            Flask / Web Dev
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Copyright -->
+            <div class="border-t border-white/5 pt-10 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-slate-500 text-sm">
+                    © 2025 Abdelrahman Fahmy. <span data-i18n="rights_reserved">All rights reserved.</span>
+                </p>
+                
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-8 right-8 glass-card px-8 py-5 rounded-2xl transform translate-y-32 opacity-0 transition-all duration-300 z-50 flex items-center gap-4 shadow-2xl">
+        <div class="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center">
+            <i data-lucide="check-circle" class="w-6 h-6 text-green-400"></i>
+        </div>
+        <span class="text-white font-semibold text-lg" id="toastMessage">Message sent successfully!</span>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTop" class="fixed bottom-8 right-8 w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center shadow-2xl shadow-blue-500/30 opacity-0 transition-all duration-300 hover:scale-110 hover-glow z-40">
+        <i data-lucide="arrow-up" class="w-6 h-6 text-white"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+        
+        // Language Translations
+        const translations = {
+            en: {
+                logo: "Abdelrahman",
+                tagline: "AI Engineer",
+                nav_home: "Home",
+                nav_about: "About",
+                nav_skills: "Skills",
+                nav_projects: "Projects",
+                nav_contact: "Contact",
+                available: "Available for opportunities",
+                hero_title: "AI Engineering Student",
+                hero_subtitle: "Machine Learning Specialist",
+                hero_desc: "AI Engineer with a strong foundation in artificial intelligence, data analysis, and intelligent systems development. Experienced in building real-world projects using Python, Machine Learning, and web technologies.",
+                view_work: "View My Work",
+                download_cv: "Download CV",
+                get_in_touch: "Get In Touch",
+                about_subtitle: "About Me",
+                about_title: "Passionate About",
+                about_intro: "Building the future with artificial intelligence and machine learning",
+                year_started: "Journey Started",
+                projects_completed: "Projects Done",
+                skills_mastered: "Skills",
+                dedication: "Dedication",
+                education_degree: "Bachelor of Artificial Intelligence",
+                education_dept: "Information Technology Department",
+                education_period: "Faculty of AI | Sep 2024 – Present",
+                about_p1: "I am Abdelrahman Mohamed Fahmy Abdelal, an AI Engineering student with a strong foundation in artificial intelligence, data analysis, and intelligent systems development. My journey started in September 2024, and I've been building real-world projects using Python, Machine Learning, and web technologies.",
+                about_p2: "Currently pursuing my bachelor's degree, I specialize in applying AI concepts to solve practical problems. My coursework includes Artificial Intelligence Programming, Data Structures, Databases, Operating Systems, and Machine Learning Fundamentals.",
+                about_p3: "I am highly motivated, detail-oriented, and passionate about solving complex problems. My goal is to transform ideas into scalable, data-driven solutions while maintaining a continuous learning mindset in the rapidly evolving field of AI.",
+                key_strengths: "Key Strengths",
+                strength1: "Building intelligent, data-driven systems",
+                strength2: "Applying AI concepts to real-world problems",
+                strength3: "Strong analytical and logical thinking",
+                strength4: "Continuous learning mindset",
+                skills_subtitle: "Expertise",
+                skills_title: "Technical",
+                skills_desc: "Comprehensive toolkit for building end-to-end AI solutions",
+                skill_python: "Python Programming",
+                skill_python_desc: "Core language for AI/ML development and data processing",
+                skill_ml: "Machine Learning",
+                skill_ml_desc: "Fundamentals of ML algorithms, model training, and predictive systems",
+                skill_da: "Data Analysis",
+                skill_da_desc: "Analyzing datasets, extracting insights, and creating visualizations",
+                skill_sql: "SQL & Databases",
+                skill_sql_desc: "Database design, querying, and management for data-driven applications",
+                skill_web: "Web Integration",
+                skill_web_desc: "Building web interfaces and backend APIs",
+                skill_ps: "Problem Solving",
+                skill_ps_desc: "Algorithmic thinking and logical approach to complex challenges",
+                projects_subtitle: "Portfolio",
+                projects_title: "Featured",
+                projects_desc: "Real-world AI applications and research projects",
+                project1_title: "Breast Cancer Detection",
+                project1_date: "April 2025",
+                project1_desc: "ML-powered predictive system using Logistic Regression for early detection",
+                project2_title: "Expert System",
+                project2_date: "February 2025",
+                project2_desc: "AI-powered PC troubleshooting system with intelligent decision rules",
+                project3_title: "Data Analysis Suite",
+                project3_date: "Ongoing",
+                project3_desc: "Comprehensive data analysis projects with advanced visualization",
+                coursework_title: "Relevant Coursework",
+                view_all_projects: "View All Projects on GitHub",
+                contact_subtitle: "Get In Touch",
+                contact_title: "Let's Work",
+                contact_desc: "Have a project in mind or want to collaborate? Feel free to reach out.",
+                contact_info: "Contact Information",
+                email: "Email",
+                location: "Location",
+                location_value: "Egypt",
+                availability: "Availability",
+                availability_value: "Open for internships & freelance",
+                follow_me: "Follow Me",
+                form_name: "Name",
+                form_email: "Email",
+                form_subject: "Subject",
+                form_message: "Message",
+                send_message: "Send Message",
+                sending: "Sending...",
+                message_sent: "Message sent successfully!",
+                footer_desc: "AI Engineering student passionate about building intelligent systems and pushing the boundaries of machine learning.",
+                quick_links: "Quick Links",
+                technologies: "Technologies",
+                rights_reserved: "All rights reserved."
+            },
+            ar: {
+                logo: "عبدالرحمن",
+                tagline: "مهندس ذكاء اصطناعي",
+                nav_home: "الرئيسية",
+                nav_about: "عني",
+                nav_skills: "المهارات",
+                nav_projects: "المشاريع",
+                nav_contact: "تواصل",
+                available: "متاح للفرص",
+                hero_title: "طالب هندسة الذكاء الاصطناعي",
+                hero_subtitle: "متخصص في تعلم الآلة",
+                hero_desc: "مهندس ذكاء اصطناعي بأساس قوي في الذكاء الاصطناعي وتحليل البيانات وتطوير الأنظمة الذكية. خبرة في بناء مشاريع واقعية باستخدام بايثون، تعلم الآلة، وتقنيات الويب.",
+                view_work: "شاهد أعمالي",
+                download_cv: "تحميل السيرة الذاتية",
+                get_in_touch: "تواصل معي",
+                about_subtitle: "عني",
+                about_title: "شغوف بـ",
+                about_intro: "بناء المستقبل باستخدام الذكاء الاصطناعي وتعلم الآلة",
+                year_started: "بداية الرحلة",
+                projects_completed: "مشروع منجز",
+                skills_mastered: "مهارة",
+                dedication: "تفاني",
+                education_degree: "بكالوريوس الذكاء الاصطناعي",
+                education_dept: "قسم تكنولوجيا المعلومات",
+                education_period: "كلية الذكاء الاصطناعي | سبتمبر 2024 – الآن",
+                about_p1: "أنا عبدالرحمن محمد فهمي عبدالعال، طالب هندسة الذكاء الاصطناعي بأساس قوي في الذكاء الاصطناعي وتحليل البيانات وتطوير الأنظمة الذكية. بدأت رحلتي في سبتمبر 2024، وكنت أبني مشاريع واقعية باستخدام بايثون، تعلم الآلة، وتقنيات الويب.",
+                about_p2: "أدرس حالياً للحصول على درجة البكالوريوس، متخصص في تطبيق مفاهيم الذكاء الاصطناعي لحل المشكلات العملية. تشمل مقرراتي: برمجة الذكاء الاصطناعي، هياكل البيانات، قواعد البيانات، أنظمة التشغيل، وأساسيات تعلم الآلة.",
+                about_p3: "أنا محفز للغاية، أولي اهتماماً بالتفاصيل، وشغوف بحل المشكلات المعقدة. هدفي هو تحويل الأفكار إلى حلول قابلة للتطوير تعتمد على البيانات مع الحفاظ على عقلية التعلم المستمر في مجال الذكاء الاصطناعي.",
+                key_strengths: "نقاط القوة الرئيسية",
+                strength1: "بناء أنظمة ذكية تعتمد على البيانات",
+                strength2: "تطبيق مفاهيم الذكاء الاصطناعي على مشاكل واقعية",
+                strength3: "تفكير تحليلي ومنطقي قوي",
+                strength4: "عقلية التعلم المستمر",
+                skills_subtitle: "الخبرة",
+                skills_title: "المهارات",
+                skills_desc: "مجموعة أدوات شاملة لبناء حلول ذكاء اصطناعي متكاملة",
+                skill_python: "برمجة بايثون",
+                skill_python_desc: "اللغة الأساسية لتطوير الذكاء الاصطناعي ومعالجة البيانات",
+                skill_ml: "تعلم الآلة",
+                skill_ml_desc: "أساسيات خوارزميات تعلم الآلة، تدريب النماذج، وأنظمة التنبؤ",
+                skill_da: "تحليل البيانات",
+                skill_da_desc: "تحليل مجموعات البيانات، استخلاص الرؤى، وإنشاء التصورات",
+                skill_sql: "SQL وقواعد البيانات",
+                skill_sql_desc: "تصميم قواعد البيانات، الاستعلام، والإدارة للتطبيقات",
+                skill_web: "تكامل الويب",
+                skill_web_desc: "بناء واجهات الويب وواجهات برمجة التطبيقات",
+                skill_ps: "حل المشكلات",
+                skill_ps_desc: "التفكير الخوارزمي والمنطقي للتحديات المعقدة",
+                projects_subtitle: "المحفظة",
+                projects_title: "المشاريع",
+                projects_desc: "تطبيقات الذكاء الاصطناعي الواقعية ومشاريع البحث",
+                project1_title: "الكشف عن سرطان الثدي",
+                project1_date: "أبريل 2025",
+                project1_desc: "نظام تنبؤي مدعوم بالذكاء الاصطناعي باستخدام الانحدار اللوجستي للكشف المبكر",
+                project2_title: "النظام الخبير",
+                project2_date: "فبراير 2025",
+                project2_desc: "نظام استكشاف أخطاء الكمبيوتر مدعوم بالذكاء الاصطناعي مع قواعد قرار ذكية",
+                project3_title: "مجموعة تحليل البيانات",
+                project3_date: "مستمر",
+                project3_desc: "مشاريع تحليل بيانات شاملة مع تصور متقدم",
+                coursework_title: "المقررات ذات الصلة",
+                view_all_projects: "شاهد جميع المشاريع على GitHub",
+                contact_subtitle: "تواصل معي",
+                contact_title: "لنعمل",
+                contact_desc: "هل لديك مشروع أو ترغب في التعاون؟ لا تتردد في التواصل.",
+                contact_info: "معلومات التواصل",
+                email: "البريد الإلكتروني",
+                location: "الموقع",
+                location_value: "مصر",
+                availability: "التوفر",
+                availability_value: "متاح للتدريب والعمل الحر",
+                follow_me: "تابعني",
+                form_name: "الاسم",
+                form_email: "البريد الإلكتروني",
+                form_subject: "الموضوع",
+                form_message: "الرسالة",
+                send_message: "إرسال الرسالة",
+                sending: "جاري الإرسال...",
+                message_sent: "تم إرسال الرسالة بنجاح!",
+                footer_desc: "طالب هندسة الذكاء الاصطناعي شغوف ببناء الأنظمة الذكية ودفع حدود تعلم الآلة.",
+                quick_links: "روابط سريعة",
+                technologies: "التقنيات",
+                rights_reserved: "جميع الحقوق محفوظة."
+            }
+        };
+        
+        // Current State
+        let currentLang = localStorage.getItem('lang') || 'en';
+        let isDark = true; // Always dark theme
+        
+        // DOM Elements
+        const html = document.documentElement;
+        const langToggle = document.getElementById('langToggle');
+        const mobileLangToggle = document.getElementById('mobileLangToggle');
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const currentLangSpan = document.getElementById('currentLang');
+        const contactForm = document.getElementById('contactForm');
+        const toast = document.getElementById('toast');
+        const toastMessage = document.getElementById('toastMessage');
+        const scrollToTop = document.getElementById('scrollToTop');
+        
+        // Initialize
+        function init() {
+            updateLanguage();
+            setupEventListeners();
+            setupIntersectionObserver();
+            setupSmoothScroll();
+            setupScrollEffects();
+        }
+        
+        // Language Functions
+        function toggleLanguage() {
+            currentLang = currentLang === 'en' ? 'ar' : 'en';
+            localStorage.setItem('lang', currentLang);
+            updateLanguage();
+        }
+        
+        function updateLanguage() {
+            // Update RTL
+            if (currentLang === 'ar') {
+                html.setAttribute('dir', 'rtl');
+                html.classList.add('font-arabic');
+            } else {
+                html.setAttribute('dir', 'ltr');
+                html.classList.remove('font-arabic');
+            }
+            
+            // Update all translatable elements
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[currentLang][key]) {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = translations[currentLang][key];
+                    } else {
+                        element.innerHTML = translations[currentLang][key];
+                    }
+                }
+            });
+            
+            // Update language toggle text
+            if (currentLangSpan) {
+                currentLangSpan.textContent = currentLang.toUpperCase();
+            }
+            if (mobileLangToggle) {
+                mobileLangToggle.querySelector('span').textContent = currentLang.toUpperCase();
+            }
+            
+            // Re-initialize icons
+            lucide.createIcons();
+        }
+        
+        // Event Listeners
+        function setupEventListeners() {
+            if (langToggle) {
+                langToggle.addEventListener('click', toggleLanguage);
+            }
+            if (mobileLangToggle) {
+                mobileLangToggle.addEventListener('click', toggleLanguage);
+            }
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+            if (contactForm) {
+                contactForm.addEventListener('submit', handleFormSubmit);
+            }
+            if (scrollToTop) {
+                scrollToTop.addEventListener('click', () => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
+        }
+        
+        // Form Handling
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            
+            // Show sending state
+            submitBtn.innerHTML = `<span>${translations[currentLang].sending}</span><div class="loader w-5 h-5 border-2"></div>`;
+            submitBtn.disabled = true;
+            
+            // Simulate sending
+            setTimeout(() => {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                lucide.createIcons();
+                
+                // Show success message
+                showToast(translations[currentLang].message_sent);
+                
+                // Reset form
+                contactForm.reset();
+            }, 2000);
+        }
+        
+        function showToast(message) {
+            toastMessage.textContent = message;
+            toast.classList.remove('translate-y-32', 'opacity-0');
+            
+            setTimeout(() => {
+                toast.classList.add('translate-y-32', 'opacity-0');
+            }, 3000);
+        }
+        
+        // Intersection Observer
+        function setupIntersectionObserver() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            document.querySelectorAll('.section-fade').forEach(section => {
+                observer.observe(section);
+            });
+        }
+        
+        // Smooth Scroll
+        function setupSmoothScroll() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        mobileMenu.classList.add('hidden');
+                    }
+                });
+            });
+        }
+        
+        // Scroll Effects
+        function setupScrollEffects() {
+            window.addEventListener('scroll', () => {
+                const navbar = document.getElementById('navbar');
+                
+                // Navbar shadow
+                if (window.scrollY > 50) {
+                    navbar.classList.add('shadow-2xl');
+                } else {
+                    navbar.classList.remove('shadow-2xl');
+                }
+                
+                // Scroll to top button
+                if (window.scrollY > 500) {
+                    scrollToTop.classList.remove('opacity-0');
+                    scrollToTop.classList.add('opacity-100');
+                } else {
+                    scrollToTop.classList.remove('opacity-100');
+                    scrollToTop.classList.add('opacity-0');
+                }
+            });
+        }
+        
+        // Run initialization
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
