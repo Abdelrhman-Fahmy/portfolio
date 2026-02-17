@@ -422,7 +422,7 @@
                     <span data-i18n="view_work">View My Work</span>
                     <i data-lucide="arrow-right" class="w-5 h-5 inline-block ml-2 group-hover:translate-x-1 transition-transform"></i>
                 </a>
-                <a href="Abdelrhman Fahmy.pdf" download class="px-8 py-4 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 font-semibold hover:-translate-y-1 hover:shadow-2xl hover:shadow-purple-500/40 transition-all duration-300 ripple group">
+                <a href="Abdelrhman_Fahmy.pdf" download class="px-8 py-4 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 font-semibold hover:-translate-y-1 hover:shadow-2xl hover:shadow-purple-500/40 transition-all duration-300 ripple group">
                     <i data-lucide="download" class="w-5 h-5 inline-block mr-2 group-hover:-translate-y-1 transition-transform"></i>
                     <span data-i18n="download_cv">Download CV</span>
                 </a>
@@ -1038,7 +1038,9 @@
     </div>
 
     <!-- Scroll to Top Button -->
-    <button id="scrollToTop" class="fixed bottom-8 right-8 w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center shadow-2xl shadow-blue-500/30 opacity-0 transition-all duration-300 hover:scale-110 hover-glow z-40">
+   <button id="scrollToTop" 
+class="fixed bottom-24 right-8 w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center shadow-2xl shadow-blue-500/30 opacity-0 translate-y-4 transition-all duration-300 hover:scale-110 hover-glow z-40">
+
         <i data-lucide="arrow-up" class="w-6 h-6 text-white"></i>
     </button>
 
@@ -1269,7 +1271,7 @@
                     if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
                         element.placeholder = translations[currentLang][key];
                     } else {
-                        element.innerHTML = translations[currentLang][key];
+                        element.textContent = translations[currentLang][key];
                     }
                 }
             });
@@ -1371,28 +1373,29 @@
             });
         }
         
-        // Scroll Effects
-        function setupScrollEffects() {
-            window.addEventListener('scroll', () => {
-                const navbar = document.getElementById('navbar');
-                
-                // Navbar shadow
-                if (window.scrollY > 50) {
-                    navbar.classList.add('shadow-2xl');
-                } else {
-                    navbar.classList.remove('shadow-2xl');
-                }
-                
-                // Scroll to top button
-                if (window.scrollY > 500) {
-                    scrollToTop.classList.remove('opacity-0');
-                    scrollToTop.classList.add('opacity-100');
-                } else {
-                    scrollToTop.classList.remove('opacity-100');
-                    scrollToTop.classList.add('opacity-0');
-                }
-            });
+// Scroll Effects
+function setupScrollEffects() {
+    window.addEventListener('scroll', () => {
+        const navbar = document.getElementById('navbar');
+        
+        // Navbar shadow
+        if (window.scrollY > 50) {
+            navbar.classList.add('shadow-2xl');
+        } else {
+            navbar.classList.remove('shadow-2xl');
         }
+        
+        // Scroll to top button
+        if (window.scrollY > 500) {
+            scrollToTop.classList.remove('opacity-0', 'translate-y-4');
+            scrollToTop.classList.add('opacity-100');
+        } else {
+            scrollToTop.classList.remove('opacity-100');
+            scrollToTop.classList.add('opacity-0', 'translate-y-4');
+        }
+    });
+}
+
         
         // Run initialization
         document.addEventListener('DOMContentLoaded', init);
