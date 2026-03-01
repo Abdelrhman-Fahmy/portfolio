@@ -1313,28 +1313,52 @@ class="fixed bottom-24 right-8 w-14 h-14 rounded-2xl bg-gradient-to-br from-blue
         }
         
         // Form Handling
-        function handleFormSubmit(e) {
-            e.preventDefault();
-            const submitBtn = contactForm.querySelector('button[type="submit"]');
-            const originalText = submitBtn.innerHTML;
-            
-            // Show sending state
-            submitBtn.innerHTML = `<span>${translations[currentLang].sending}</span><div class="loader w-5 h-5 border-2"></div>`;
-            submitBtn.disabled = true;
-            
-            // Simulate sending
-            setTimeout(() => {
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-                lucide.createIcons();
-                
-                // Show success message
-                showToast(translations[currentLang].message_sent);
-                
-                // Reset form
-                contactForm.reset();
-            }, 2000);
-        }
+function handleFormSubmit(e) {
+    e.preventDefault();
+
+    const submitBtn = contactForm.querySelector('button[type="submit"]');
+    const originalText = submitBtn.innerHTML;
+
+    // Collect form data
+    const name = contactForm.querySelector('input[placeholder]').value;
+    const email = contactForm.querySelector('input[type="email"]').value;
+    const subject = contactForm.querySelectorAll('input[type="text"]')[1].value;
+    const message = contactForm.querySelector('textarea').value;
+
+    // Show sending state (نفس تصميمك)
+    submitBtn.innerHTML = `<span>${translations[currentLang].sending}</span>
+                           <div class="loader w-5 h-5 border-2"></div>`;
+    submitBtn.disabled = true;
+
+    emailjs.send("service_vuh69ig", "YOUR_TEMPLATE_ID", {
+        name: name,
+        email: email,
+        subject: subject,
+        message: message
+    })
+    .then(() => {
+
+        // رجع الزرار لحالته الطبيعية
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+        lucide.createIcons();
+
+        // Toast بالترجمة
+        showToast(translations[currentLang].message_sent);
+
+        // Reset form
+        contactForm.reset();
+    })
+    .catch((error) => {
+        console.error(error);
+
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+        lucide.createIcons();
+
+        alert("Something went wrong. Try again.");
+    });
+}
         
         function showToast(message) {
             toastMessage.textContent = message;
@@ -1401,5 +1425,12 @@ function setupScrollEffects() {
         // Run initialization
         document.addEventListener('DOMContentLoaded', init);
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+<script>
+(function(){
+   emailjs.init("4wyO_xA_A_hdd-Muw");
+})();
+</script>
 </body>
 </html>
