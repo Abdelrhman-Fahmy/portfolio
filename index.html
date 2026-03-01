@@ -1040,7 +1040,9 @@
 <footer class="relative bg-white dark:bg-slate-950 border-t border-white/5 pt-20 pb-10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16"
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+
+        </div>
 
             <!-- Brand -->
             <div class="space-y-6">
@@ -1355,23 +1357,7 @@ class="fixed bottom-24 right-8 w-14 h-14 rounded-2xl bg-gradient-to-br from-blue
         let currentLang = localStorage.getItem('lang') || 'en';
         let isDark = localStorage.getItem('theme') === 'dark';
 
-function applyTheme() {
-    if (isDark) {
-        document.documentElement.classList.add('dark');
-        moonIcon.classList.add('hidden');
-        sunIcon.classList.remove('hidden');
-    } else {
-        document.documentElement.classList.remove('dark');
-        sunIcon.classList.add('hidden');
-        moonIcon.classList.remove('hidden');
-    }
-}
 
-function toggleTheme() {
-    isDark = !isDark;
-    localStorage.setItem('theme', isDark ? 'dark' : 'light');
-    applyTheme();
-} 
         
         // DOM Elements
         const html = document.documentElement;
@@ -1386,18 +1372,21 @@ function toggleTheme() {
         const scrollToTop = document.getElementById('scrollToTop');
         
         // Initialize
-        function init() {
-                const savedTheme = localStorage.getItem('theme');
+       function init() {
+    const savedTheme = localStorage.getItem('theme');
 
-                        if (savedTheme === 'dark') {
-                        document.documentElement.classList.add('dark');
-                        }
-            updateLanguage();
-            setupEventListeners();
-            setupIntersectionObserver();
-            setupSmoothScroll();
-            setupScrollEffects();
-        }
+    if (savedTheme === 'dark') {
+        document.documentElement.classList.add('dark');
+        document.getElementById('sunIcon')?.classList.remove('hidden');
+        document.getElementById('moonIcon')?.classList.add('hidden');
+    }
+
+    updateLanguage();
+    setupEventListeners();
+    setupIntersectionObserver();
+    setupSmoothScroll();
+    setupScrollEffects();
+}
         
         // Language Functions
         function toggleLanguage() {
@@ -1441,12 +1430,29 @@ function toggleTheme() {
         }
         
         // Event Listeners
-        function setupEventListeners() {
+  function setupEventListeners() {
 
     const themeToggle = document.getElementById('themeToggle');
     const sunIcon = document.getElementById('sunIcon');
     const moonIcon = document.getElementById('moonIcon');
 
+    // Dark Mode
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+
+            document.documentElement.classList.toggle('dark');
+
+            const isDark = document.documentElement.classList.contains('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+
+            if (sunIcon && moonIcon) {
+                sunIcon.classList.toggle('hidden');
+                moonIcon.classList.toggle('hidden');
+            }
+        });
+    }
+
+    // Language
     if (langToggle) {
         langToggle.addEventListener('click', toggleLanguage);
     }
@@ -1455,15 +1461,14 @@ function toggleTheme() {
         mobileLangToggle.addEventListener('click', toggleLanguage);
     }
 
+    // Mobile Menu
     if (mobileMenuBtn) {
         mobileMenuBtn.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
-            // hide scroll-to-top while menu is visible to avoid overlap
+
             if (scrollToTop) {
                 if (mobileMenu.classList.contains('hidden')) {
-                    // menu closed: re-evaluate visibility based on scroll position
-                    const event = new Event('scroll');
-                    window.dispatchEvent(event);
+                    window.dispatchEvent(new Event('scroll'));
                 } else {
                     scrollToTop.classList.add('opacity-0', 'translate-y-4');
                     scrollToTop.classList.remove('opacity-100');
@@ -1472,32 +1477,27 @@ function toggleTheme() {
         });
     }
 
+    // Contact Form
     if (contactForm) {
         contactForm.addEventListener('submit', handleFormSubmit);
     }
 
+    // Scroll To Top
     if (scrollToTop) {
         scrollToTop.addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     }
+}
 
-    // 🔥 Dark Mode Toggle
-    if (themeToggle) {
-        themeToggle.addEventListener('click', () => {
-            document.documentElement.classList.toggle('dark');
-
-            const isDark = document.documentElement.classList.contains('dark');
-            localStorage.setItem('theme', isDark ? 'dark' : 'light');
-
+ 
             // تبديل الأيقونات
             if (sunIcon && moonIcon) {
                 sunIcon.classList.toggle('hidden');
                 moonIcon.classList.toggle('hidden');
             }
-        });
-    }
-}
+    
+
         
         // Form Handling
 function handleFormSubmit(e) {
