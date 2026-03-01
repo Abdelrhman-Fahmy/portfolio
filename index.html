@@ -198,6 +198,16 @@
         .hover-glow:hover {
             box-shadow: 0 0 30px rgba(59, 130, 246, 0.6);
         }
+
+        /* hint GPU to promote animated elements for smoother rendering */
+        .animate-float,
+        .hover-lift,
+        .hover-glow,
+        .animate-slide-up,
+        .animate-slide-down,
+        .animate-scale-in {
+            will-change: transform, opacity;
+        }
         
         /* Animated Gradient Border */
         .gradient-border {
@@ -320,6 +330,57 @@
             transition: background-color 0.3s ease;
         }
 
+        /* Improve mobile responsiveness and touch performance */
+        body {
+            /* prevent any accidental horizontal scrolling */
+            overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* remove 300ms touch delay on clickable elements */
+        a, button {
+            touch-action: manipulation;
+        }
+
+        /* Disable some heavy animations on very small screens for performance */
+        @media (max-width: 640px) {
+            .animate-float,
+            .animate-glow,
+            .animate-slide-up,
+            .animate-slide-down,
+            .animate-scale-in {
+                animation: none !important;
+            }
+            .tech-grid {
+                opacity: 0.1; /* lower background detail to reduce paint cost */
+            }
+            .hero-bg {
+                display: none;
+            }
+        }
+
+        /* additional small-screen layout tweaks */
+        @media (max-width: 640px) {
+            /* reposition scroll-to-top button so it doesn't overlap cards
+               and make it smaller */
+            #scrollToTop {
+                bottom: 5rem !important;
+                right: 1rem !important;
+                width: 3rem !important;
+                height: 3rem !important;
+            }
+            /* move toast to left bottom corner to avoid the button */
+            #toast {
+                left: 1rem !important;
+                right: auto !important;
+                bottom: 1rem !important;
+                max-width: calc(100% - 2rem);
+            }
+            #toastMessage {
+                font-size: 0.875rem;
+            }
+        }
+
         /* Light-mode text override: make most slate text utilities render as black in light mode */
         html:not(.dark) .text-slate-50,
         html:not(.dark) .text-slate-100,
@@ -371,7 +432,7 @@
                         <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-400 group-hover:w-full transition-all duration-300"></span>
                     </a>
                     <a href="#contact" class="text-sm font-medium hover:text-blue-400 transition-colors relative group" data-i18n="nav_contact">
-                        Contact
+                        Get In Touch
                         <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-400 group-hover:w-full transition-all duration-300"></span>
                     </a>
                 </div>
@@ -404,13 +465,13 @@
         </div>
         
         <!-- Mobile Menu -->
-        <div id="mobileMenu" class="hidden md:hidden glass-dark border-t border-white/5">
+        <div id="mobileMenu" class="hidden md:hidden glass-dark border-t border-white/5 h-screen overflow-auto">
             <div class="px-4 pt-2 pb-6 space-y-1">
                 <a href="#home" class="block px-4 py-3 rounded-lg hover:bg-white/5 text-base font-medium transition-all" data-i18n="nav_home">Home</a>
                 <a href="#about" class="block px-4 py-3 rounded-lg hover:bg-white/5 text-base font-medium transition-all" data-i18n="nav_about">About</a>
                 <a href="#skills" class="block px-4 py-3 rounded-lg hover:bg-white/5 text-base font-medium transition-all" data-i18n="nav_skills">Skills</a>
                 <a href="#projects" class="block px-4 py-3 rounded-lg hover:bg-white/5 text-base font-medium transition-all" data-i18n="nav_projects">Projects</a>
-                <a href="#contact" class="block px-4 py-3 rounded-lg hover:bg-white/5 text-base font-medium transition-all" data-i18n="nav_contact">Contact</a>
+                <a href="#contact" class="block px-4 py-3 rounded-lg hover:bg-white/5 text-base font-medium transition-all" data-i18n="nav_contact">Get In Touch</a>
             </div>
         </div>
     </nav>
@@ -505,7 +566,8 @@
                             </div>
                             
                             <!-- Stats Grid -->
-                            <div class="grid grid-cols-2 gap-4">
+                            <!-- make stats stack on very narrow screens to avoid overflow/truncation -->
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <div class="glass rounded-2xl p-6 text-center hover-lift">
                                     <div class="text-4xl font-bold gradient-text mb-2">2024</div>
                                     <div class="text-sm text-slate-400" data-i18n="year_started">Journey Started</div>
@@ -874,7 +936,7 @@
             <div class="section-fade">
                 <!-- Section Header -->
                 <div class="text-center mb-20">
-                    <span class="inline-block px-4 py-2 rounded-full glass border border-blue-500/30 text-sm font-semibold text-blue-400 tracking-wider uppercase mb-4" data-i18n="contact_subtitle">Get In Touch</span>
+                    <span class="inline-block px-4 py-2 rounded-full glass border border-blue-500/30 text-sm font-semibold text-blue-500 tracking-wider uppercase mb-4" data-i18n="contact_subtitle">Get In Touch</span>
                     <h3 class="text-5xl md:text-6xl font-bold text-slate-900 dark:text-white mb-6" data-i18n="contact_title">Let's Work <span class="gradient-text">Together</span></h3>
                     <p class="text-xl text-slate-400 max-w-3xl mx-auto" data-i18n="contact_desc">Have a project in mind or want to collaborate? Feel free to reach out.</p>
                 </div>
@@ -975,95 +1037,129 @@
     </section>
 
     <!-- Footer -->
-    <footer class="relative bg-white dark:bg-slate-950 border-t border-white/5 pt-20 pb-10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-4 gap-12 mb-16">
-                <!-- Brand -->
-                <div class="md:col-span-2 space-y-6">
-                    <div class="flex items-center gap-3">
-                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 flex items-center justify-center shadow-lg shadow-blue-500/30">
-                            <i data-lucide="brain" class="w-6 h-6 text-slate-900 dark:text-white"></i>
-                        </div>
-                        <div class="flex flex-col">
-                            <span class="font-bold text-xl">Abdelrahman Fahmy</span>
-                            <span class="text-sm text-blue-400">AI Engineer</span>
-                        </div>
+<footer class="relative bg-white dark:bg-slate-950 border-t border-white/5 pt-20 pb-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16"
+
+            <!-- Brand -->
+            <div class="space-y-6">
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 flex items-center justify-center shadow-lg shadow-blue-500/30">
+                        <i data-lucide="brain" class="w-6 h-6 text-slate-900 dark:text-white"></i>
                     </div>
-                    <p class="text-slate-400 leading-relaxed max-w-md" data-i18n="footer_desc">
-                        AI Engineering student passionate about building intelligent systems and pushing the boundaries of machine learning.
-                    </p>
-                    <div class="flex gap-4">
-                        <a href="https://github.com/Abdelrhman-Fahmy" target="_blank" class="w-12 h-12 rounded-xl glass hover:bg-white/10 flex items-center justify-center transition-all hover:scale-110 hover-glow">
-                            <i data-lucide="github" class="w-5 h-5"></i>
-                        </a>
-                        <a href="https://www.linkedin.com/in/abdelrhmanfahmy1/" target="_blank" class="w-12 h-12 rounded-xl glass hover:bg-white/10 flex items-center justify-center transition-all hover:scale-110 hover-glow">
-                            <i data-lucide="linkedin" class="w-5 h-5"></i>
-                        </a>
-                        <a href="mailto:abdelrhmanfahmy40@gmail.com" class="w-12 h-12 rounded-xl glass hover:bg-white/10 flex items-center justify-center transition-all hover:scale-110 hover-glow">
-                            <i data-lucide="mail" class="w-5 h-5"></i>
-                        </a>
+                    <div>
+                        <span class="font-bold text-xl">Abdelrahman Fahmy</span>
+                        <p class="text-sm text-blue-400">AI Engineer</p>
                     </div>
                 </div>
-                
-                <!-- Quick Links -->
-                <div>
-                    <h4 class="text-slate-900 dark:text-white font-bold text-lg mb-6" data-i18n="quick_links">Quick Links</h4>
-                    <ul class="space-y-3">
-                        <li><a href="#home" class="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-2 group">
-                            <i data-lucide="chevron-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
-                            <span data-i18n="nav_home">Home</span>
-                        </a></li>
-                        <li><a href="#about" class="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-2 group">
-                            <i data-lucide="chevron-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
-                            <span data-i18n="nav_about">About</span>
-                        </a></li>
-                        <li><a href="#projects" class="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-2 group">
-                            <i data-lucide="chevron-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
-                            <span data-i18n="nav_projects">Projects</span>
-                        </a></li>
-                        <li><a href="#contact" class="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-2 group">
-                            <i data-lucide="chevron-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
-                            <span data-i18n="nav_contact">Contact</span>
-                        </a></li>
-                    </ul>
-                <div>
-                    <h4 class="text-slate-900 dark:text-white font-bold text-lg mb-6" data-i18n="technologies">Technologies</h4>
-                <!-- Technologies -->
-                <div>
-                    <h4 class="text-slate-900 dark:text-white font-bold text-lg mb-6" data-i18n="technologies">Technologies</h4>
-                    <ul class="space-y-3 text-slate-400 text-sm">
-                        <li class="flex items-center gap-2">
-                            <i data-lucide="check" class="w-4 h-4 text-blue-400"></i>
-                            Python / Scikit-learn
-                        </li>
-                        <li class="flex items-center gap-2">
-                            <i data-lucide="check" class="w-4 h-4 text-blue-400"></i>
-                            Pandas / NumPy
-                        </li>
-                        <li class="flex items-center gap-2">
-                            <i data-lucide="check" class="w-4 h-4 text-blue-400"></i>
-                            SQL / Databases
-                        </li>
-                        <li class="flex items-center gap-2">
-                            <i data-lucide="check" class="w-4 h-4 text-blue-400"></i>
-                            Flask / Web Dev
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            
-            <!-- Copyright -->
-            <div class="border-t border-white/5 pt-10 flex flex-col md:flex-row justify-between items-center gap-4">
-                <p class="text-slate-500 text-sm">
-                    © 2025 Abdelrahman Fahmy. <span data-i18n="rights_reserved">All rights reserved.</span>
-                </p>
-                
-            </div>
+
+                 <p class="text-slate-500 dark:text-slate-400 text-sm max-w-sm leading-relaxed">
+            AI Engineering student passionate about building intelligent systems and pushing the boundaries of machine learning.
+        </p>
+
+                <div class="flex gap-4">
+                     <a href="https://github.com/Abdelrhman-Fahmy" target="_blank"
+               class="w-10 h-10 rounded-lg border border-slate-300 dark:border-white/10 flex items-center justify-center hover:bg-slate-100 dark:hover:bg-white/10 transition">
+                <i data-lucide="github" class="w-4 h-4"></i>
+                  </a>
+            <a href="https://www.linkedin.com/in/abdelrhmanfahmy1/" target="_blank"
+               class="w-10 h-10 rounded-lg border border-slate-300 dark:border-white/10 flex items-center justify-center hover:bg-slate-100 dark:hover:bg-white/10 transition">
+                <i data-lucide="linkedin" class="w-4 h-4"></i>
+            </a>
+            <a href="mailto:abdelrhmanfahmy40@gmail.com"
+               class="w-10 h-10 rounded-lg border border-slate-300 dark:border-white/10 flex items-center justify-center hover:bg-slate-100 dark:hover:bg-white/10 transition">
+                <i data-lucide="mail" class="w-4 h-4"></i>
+            </a>
+        </div>
+    </div>
+     <!-- Links + Tech Compact -->
+    <div class="grid grid-cols-2 gap-10">
+              <!-- Quick Links -->
+<div>
+     <h4 class="text-sm font-semibold text-slate-900 dark:text-white mb-4 uppercase tracking-wide">
+                Quick Links
+            </h4>
+
+    <ul class="space-y-3">
+
+        <li>
+            <a href="#home" class="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-2 group">
+                <i data-lucide="chevron-right"
+                   class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                <span data-i18n="nav_home">Home</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="#about" class="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-2 group">
+                <i data-lucide="chevron-right"
+                   class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                <span data-i18n="nav_about">About</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="#projects" class="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-2 group">
+                <i data-lucide="chevron-right"
+                   class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                <span data-i18n="nav_projects">Projects</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="#contact" class="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-2 group">
+                <i data-lucide="chevron-right"
+                   class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                <span data-i18n="nav_contact">Contact</span>
+            </a>
+        </li>
+
+    </ul>
+</div>
+
+<!-- Technologies -->
+<div>
+      <h4 class="text-sm font-semibold text-slate-900 dark:text-white mb-4 uppercase tracking-wide">
+                Technologies
+            </h4>
+
+
+    <ul class="space-y-3 text-slate-400 text-sm">
+
+        <li class="flex items-center gap-2">
+            <i data-lucide="check" class="w-4 h-4 text-blue-400"></i>
+            Python / Scikit-learn
+        </li>
+
+        <li class="flex items-center gap-2">
+            <i data-lucide="check" class="w-4 h-4 text-blue-400"></i>
+            Pandas / NumPy
+        </li>
+
+        <li class="flex items-center gap-2">
+            <i data-lucide="check" class="w-4 h-4 text-blue-400"></i>
+            SQL / Databases
+        </li>
+
+        <li class="flex items-center gap-2">
+            <i data-lucide="check" class="w-4 h-4 text-blue-400"></i>
+            Flask / Web Dev
+        </li>
+
+    </ul>
+</div>
+  </div>
+
+        <!-- Copyright -->
+          <div class="border-t border-white/5 pt-6 text-center text-slate-500 text-sm">
+            © 2025 Abdelrahman Fahmy. All rights reserved.
+        </div>
         </div>
     </footer>
 
     <!-- Toast Notification -->
-    <div id="toast" class="fixed bottom-8 right-8 glass-card px-8 py-5 rounded-2xl transform translate-y-32 opacity-0 transition-all duration-300 z-50 flex items-center gap-4 shadow-2xl">
+    <div id="toast" class="fixed bottom-8 right-8 glass-card px-8 py-5 rounded-2xl transform translate-y-32 opacity-0 transition-all duration-300 z-60 flex items-center gap-4 shadow-2xl">
         <div class="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center">
             <i data-lucide="check-circle" class="w-6 h-6 text-green-400"></i>
         </div>
@@ -1362,6 +1458,17 @@ function toggleTheme() {
     if (mobileMenuBtn) {
         mobileMenuBtn.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
+            // hide scroll-to-top while menu is visible to avoid overlap
+            if (scrollToTop) {
+                if (mobileMenu.classList.contains('hidden')) {
+                    // menu closed: re-evaluate visibility based on scroll position
+                    const event = new Event('scroll');
+                    window.dispatchEvent(event);
+                } else {
+                    scrollToTop.classList.add('opacity-0', 'translate-y-4');
+                    scrollToTop.classList.remove('opacity-100');
+                }
+            }
         });
     }
 
@@ -1480,25 +1587,33 @@ function handleFormSubmit(e) {
         
 // Scroll Effects
 function setupScrollEffects() {
+    // use passive listener for better scrolling performance on mobile
     window.addEventListener('scroll', () => {
         const navbar = document.getElementById('navbar');
-        
+        const hero = document.getElementById('home');
+
         // Navbar shadow
         if (window.scrollY > 50) {
             navbar.classList.add('shadow-2xl');
         } else {
             navbar.classList.remove('shadow-2xl');
         }
-        
-        // Scroll to top button
-        if (window.scrollY > 500) {
+
+        // Scroll to top button: only show after the hero section has scrolled past
+        let threshold = 500;
+        if (hero) {
+            threshold = hero.offsetHeight;
+        }
+        // also hide if mobile menu is open
+        const menuOpen = mobileMenu && !mobileMenu.classList.contains('hidden');
+        if (window.scrollY > threshold && !menuOpen) {
             scrollToTop.classList.remove('opacity-0', 'translate-y-4');
             scrollToTop.classList.add('opacity-100');
         } else {
             scrollToTop.classList.remove('opacity-100');
             scrollToTop.classList.add('opacity-0', 'translate-y-4');
         }
-    });
+    }, { passive: true });
 }
 
         
