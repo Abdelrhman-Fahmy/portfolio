@@ -2,6 +2,9 @@
 <html lang="en" dir="ltr" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
+    <meta property="og:title" content="Abdelrahman Fahmy | AI Engineer">
+<meta property="og:description" content="AI Engineering Student & Machine Learning Specialist">
+<meta property="og:type" content="website">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Abdelrahman Mohamed Fahmy Abdelal - AI Engineering Student & Machine Learning Specialist Portfolio">
     <meta name="keywords" content="AI Engineer, Machine Learning, Python, Data Science, Portfolio">
@@ -453,19 +456,36 @@
                 </div>
                 
                 <!-- Mobile Menu Button -->
-                <div class="md:hidden flex items-center gap-3">
-                    <button id="mobileLangToggle" class="px-3 py-2 rounded-lg glass hover:bg-white/10 transition-all">
-                        <span class="text-sm font-bold">EN</span>
-                    </button>
-                    <button id="mobileMenuBtn" class="p-2 rounded-lg glass hover:bg-white/10 transition-all">
-                        <i data-lucide="menu" class="w-6 h-6"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
+      <div class="md:hidden flex items-center gap-3">
+
+    <!-- Mobile Language -->
+    <button id="mobileLangToggle"
+        class="px-3 py-2 rounded-lg glass hover:bg-white/10 transition-all">
+        <span class="text-sm font-bold">EN</span>
+    </button>
+
+    <!-- 🔥 Mobile Dark Mode -->
+    <button id="mobileThemeToggle"
+        class="p-2 rounded-lg glass hover:bg-white/10 transition-all">
+        <i data-lucide="sun" class="w-5 h-5 hidden" id="mobileSunIcon"></i>
+        <i data-lucide="moon" class="w-5 h-5" id="mobileMoonIcon"></i>
+    </button>
+
+    <!-- Menu -->
+    <button id="mobileMenuBtn"
+        class="p-2 rounded-lg glass hover:bg-white/10 transition-all">
+        <i data-lucide="menu" class="w-6 h-6"></i>
+    </button>
+
+</div>
         
         <!-- Mobile Menu -->
-        <div id="mobileMenu" class="hidden md:hidden glass-dark border-t border-white/5 h-screen overflow-auto">
+     <div id="mobileMenu"
+class="hidden md:hidden fixed top-20 left-0 w-full h-[calc(100vh-5rem)]
+bg-white/95 dark:bg-slate-950
+backdrop-blur-md
+border-t border-slate-200 dark:border-white/5
+overflow-auto z-40 transition-colors duration-300">
             <div class="px-4 pt-2 pb-6 space-y-1">
                 <a href="#home" class="block px-4 py-3 rounded-lg hover:bg-white/5 text-base font-medium transition-all" data-i18n="nav_home">Home</a>
                 <a href="#about" class="block px-4 py-3 rounded-lg hover:bg-white/5 text-base font-medium transition-all" data-i18n="nav_about">About</a>
@@ -931,7 +951,8 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="relative py-32 bg-white dark:bg-slate-950 hero-bg">
+    <section id="contact"
+            class="relative py-16 sm:py-24 lg:py-32 bg-white dark:bg-slate-950 hero-bg">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="section-fade">
                 <!-- Section Header -->
@@ -941,7 +962,7 @@
                     <p class="text-xl text-slate-400 max-w-3xl mx-auto" data-i18n="contact_desc">Have a project in mind or want to collaborate? Feel free to reach out.</p>
                 </div>
                 
-                <div class="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto px-2 sm:px-0">
                     <!-- Contact Info -->
                     <div class="space-y-8">
                         <div class="glass-card rounded-3xl p-10 hover-lift">
@@ -1355,10 +1376,7 @@ class="fixed bottom-24 right-8 w-14 h-14 rounded-2xl bg-gradient-to-br from-blue
         
         // Current State
         let currentLang = localStorage.getItem('lang') || 'en';
-        let isDark = localStorage.getItem('theme') === 'dark';
-
-
-        
+       
         // DOM Elements
         const html = document.documentElement;
         const langToggle = document.getElementById('langToggle');
@@ -1435,6 +1453,27 @@ class="fixed bottom-24 right-8 w-14 h-14 rounded-2xl bg-gradient-to-br from-blue
     const themeToggle = document.getElementById('themeToggle');
     const sunIcon = document.getElementById('sunIcon');
     const moonIcon = document.getElementById('moonIcon');
+    const mobileThemeToggle = document.getElementById('mobileThemeToggle');
+const mobileSunIcon = document.getElementById('mobileSunIcon');
+const mobileMoonIcon = document.getElementById('mobileMoonIcon');
+
+if (mobileThemeToggle) {
+    mobileThemeToggle.addEventListener('click', () => {
+
+        document.documentElement.classList.toggle('dark');
+
+        const isDark = document.documentElement.classList.contains('dark');
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+
+        // Desktop icons
+        document.getElementById('sunIcon')?.classList.toggle('hidden');
+        document.getElementById('moonIcon')?.classList.toggle('hidden');
+
+        // Mobile icons
+        mobileSunIcon?.classList.toggle('hidden');
+        mobileMoonIcon?.classList.toggle('hidden');
+    });
+}
 
     // Dark Mode
     if (themeToggle) {
@@ -1476,6 +1515,10 @@ class="fixed bottom-24 right-8 w-14 h-14 rounded-2xl bg-gradient-to-br from-blue
             }
         });
     }
+    if (sunIcon && moonIcon) {
+    sunIcon.classList.toggle('hidden');
+    moonIcon.classList.toggle('hidden');
+}
 
     // Contact Form
     if (contactForm) {
@@ -1491,11 +1534,6 @@ class="fixed bottom-24 right-8 w-14 h-14 rounded-2xl bg-gradient-to-br from-blue
 }
 
  
-            // تبديل الأيقونات
-            if (sunIcon && moonIcon) {
-                sunIcon.classList.toggle('hidden');
-                moonIcon.classList.toggle('hidden');
-            }
     
 
         
@@ -1615,13 +1653,11 @@ function setupScrollEffects() {
         }
     }, { passive: true });
 }
-
-        
+   
         // Run initialization
         document.addEventListener('DOMContentLoaded', init);
     </script>
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-
 <script>
 (function(){
    emailjs.init("4wyO_xA_A_hdd-Muw");
