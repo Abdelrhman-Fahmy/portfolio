@@ -333,14 +333,40 @@ section {
             font-family: 'Cairo', sans-serif;
         }
         
-        /* Loading Animation */
+        /* Loading Animation - spinner */
         .loader {
-            width: 48px;
-            height: 48px;
-            border: 5px solid rgba(59, 130, 246, 0.2);
-            border-bottom-color: #3b82f6;
+            width: 18px;
+            height: 18px;
+            border: 2px solid rgba(255,255,255,0.25);
+            border-top-color: #fff;
             border-radius: 50%;
-            animation: spin 1s linear infinite;
+            animation: spin 0.7s linear infinite;
+            flex-shrink: 0;
+        }
+
+        /* Sending dots animation */
+        .sending-dots {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .sending-dots span {
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.9);
+            animation: dotBounce 1.2s ease-in-out infinite;
+        }
+        .sending-dots span:nth-child(2) { animation-delay: 0.2s; }
+        .sending-dots span:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes dotBounce {
+            0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
+            40%            { transform: scale(1.1); opacity: 1; }
+        }
+
+        /* Submit button sending state */
+        .btn-sending {
+            background: linear-gradient(135deg, #4f46e5, #7c3aed) !important;
+            pointer-events: none;
         }
         
         /* Smooth Transitions - targeted only */
@@ -826,7 +852,7 @@ overflow-auto z-40 transition-colors duration-300">
                 <a href="https://www.linkedin.com/in/abdelrhmanfahmy1/" target="_blank" aria-label="LinkedIn" class="w-12 h-12 rounded-full glass hover:bg-white/10 flex items-center justify-center transition-all hover:scale-110 hover-glow">
                     <i data-lucide="linkedin" class="w-6 h-6"></i>
                 </a>
-                <a href="abdelrhmanfahmy40@gmail.com" aria-label="Email" class="w-12 h-12 rounded-full glass hover:bg-white/10 flex items-center justify-center transition-all hover:scale-110 hover-glow">
+                <a href="/cdn-cgi/l/email-protection#d5b4b7b1b0b9a7bdb8b4bbb3b4bdb8ace1e595b2b8b4bcb9fbb6bab8" aria-label="Email" class="w-12 h-12 rounded-full glass hover:bg-white/10 flex items-center justify-center transition-all hover:scale-110 hover-glow">
                     <i data-lucide="mail" class="w-6 h-6"></i>
                 </a>
             </div>
@@ -1267,7 +1293,7 @@ overflow-auto z-40 transition-colors duration-300">
                                     </div>
                                     <div>
                                         <h5 class="text-slate-900 dark:text-white font-semibold text-lg mb-2" data-i18n="email">Email</h5>
-                                        <a href="mailto:abdelrhmanfahmy40@gmail.com" class="text-slate-400 hover:text-blue-400 transition-colors text-lg">abdelrhmanfahmy40@gmail.com</a>
+                                        <a href="/cdn-cgi/l/email-protection#5d3c3f3938312f35303c333b3c353024696d1d3a303c3431733e3230" class="text-slate-400 hover:text-blue-400 transition-colors text-lg flex items-center gap-2 group"><span class="__cf_email__" data-cfemail="83e2e1e7e6eff1ebeee2ede5e2ebeefab7b3c3e4eee2eaefade0ecee">[email&#160;protected]</span><i data-lucide="mail" class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity text-blue-400"></i></a>
                                     </div>
                                 </div>
                                 
@@ -1278,7 +1304,7 @@ overflow-auto z-40 transition-colors duration-300">
                                     </div>
                                     <div>
                                         <h5 class="text-slate-900 dark:text-white font-semibold text-lg mb-2" data-i18n="phone">phone</h5>
-                                        <a href="tel:+201062503478" class="text-slate-400 hover:text-blue-400 transition-colors text-lg" data-i18n="phone_value">+201062503478</a>
+                                        <a href="tel:+201062503478" class="text-slate-400 hover:text-green-400 transition-colors text-lg flex items-center gap-2 group" data-i18n="phone_value">+201062503478<i data-lucide="phone-call" class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity text-green-400"></i></a>
                                     </div>
                                 </div>
                                 
@@ -1304,7 +1330,7 @@ overflow-auto z-40 transition-colors duration-300">
                                     <a href="https://www.linkedin.com/in/abdelrhmanfahmy1/" target="_blank" class="w-14 h-14 rounded-2xl glass hover:bg-white/10 flex items-center justify-center transition-all hover:scale-110 hover-glow group">
                                         <i data-lucide="linkedin" class="w-6 h-6 group-hover:text-blue-400 transition-colors"></i>
                                     </a>
-                                    <a href="/cdn-cgi/l/email-protection#6c0d0e0809001e04010d020a0d040115585c2c0b010d0500420f0301" class="w-14 h-14 rounded-2xl glass hover:bg-white/10 flex items-center justify-center transition-all hover:scale-110 hover-glow group">
+                                    <a href="/cdn-cgi/l/email-protection#f8999a9c9d948a909599969e99909581ccc8b89f95999194d69b9795" class="w-14 h-14 rounded-2xl glass hover:bg-white/10 flex items-center justify-center transition-all hover:scale-110 hover-glow group">
                                         <i data-lucide="mail" class="w-6 h-6 group-hover:text-blue-400 transition-colors"></i>
                                     </a>
                                 </div>
@@ -1378,7 +1404,7 @@ overflow-auto z-40 transition-colors duration-300">
                class="w-10 h-10 rounded-lg border border-slate-300 dark:border-white/10 flex items-center justify-center hover:bg-slate-100 dark:hover:bg-white/10 transition">
                 <i data-lucide="linkedin" class="w-4 h-4"></i>
             </a>
-            <a href="/cdn-cgi/l/email-protection#9afbf8fefff6e8f2f7fbf4fcfbf2f7e3aeaadafdf7fbf3f6b4f9f5f7" class="w-10 h-10 rounded-lg border border-slate-300 dark:border-white/10 flex items-center justify-center hover:bg-slate-100 dark:hover:bg-white/10 transition">
+            <a href="/cdn-cgi/l/email-protection#1f7e7d7b7a736d77727e71797e7772662b2f5f78727e7673317c7072" class="w-10 h-10 rounded-lg border border-slate-300 dark:border-white/10 flex items-center justify-center hover:bg-slate-100 dark:hover:bg-white/10 transition">
                 <i data-lucide="mail" class="w-4 h-4"></i>
             </a>
         </div>
@@ -1484,7 +1510,8 @@ class="fixed bottom-24 right-8 w-14 h-14 rounded-2xl bg-gradient-to-br from-blue
     </button>
 
     <!-- Scripts -->
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
     <script>
         
         // Initialize Lucide Icons - called after DOM ready since script is deferred
@@ -1612,7 +1639,7 @@ class="fixed bottom-24 right-8 w-14 h-14 rounded-2xl bg-gradient-to-br from-blue
                 get_in_touch: "Get In Touch",
                 about_subtitle: "About Me",
                 about_title: "Passionate About",
-                about_intro: "Building the future with artificial intelligence and machine learning.",
+                about_intro: "Building the future with artificial intelligence and machine learning",
                 year_started: "Journey Started",
                 projects_completed: "Projects Done",
                 skills_mastered: "Skills",
@@ -1663,7 +1690,6 @@ class="fixed bottom-24 right-8 w-14 h-14 rounded-2xl bg-gradient-to-br from-blue
                 contact_info: "Contact Information",
                 email: "Email",
                 phone: "Phone",
-                
                 availability: "Availability",
                 availability_value: "Open for internships & freelance",
                 follow_me: "Follow Me",
@@ -1696,7 +1722,7 @@ class="fixed bottom-24 right-8 w-14 h-14 rounded-2xl bg-gradient-to-br from-blue
                 get_in_touch: "تواصل معي",
                 about_subtitle: "عني",
                 about_title: "شغوف بـ",
-                about_intro: "بناء المستقبل باستخدام الذكاء الاصطناعي وتعلم الآلة.",
+                about_intro: "بناء المستقبل باستخدام الذكاء الاصطناعي وتعلم الآلة",
                 year_started: "بداية الرحلة",
                 projects_completed: "مشروع منجز",
                 skills_mastered: "مهارة",
@@ -1791,6 +1817,7 @@ class="fixed bottom-24 right-8 w-14 h-14 rounded-2xl bg-gradient-to-br from-blue
     }
 
     lucide.createIcons();
+    emailjs.init("4wyO_xA_A_hdd-Muw"); 
     updateLanguage();
     setupEventListeners();
     setupIntersectionObserver();
@@ -1942,10 +1969,14 @@ function handleFormSubmit(e) {
     const subject = contactForm.querySelectorAll('input[type="text"]')[1].value;
     const message = contactForm.querySelector('textarea').value;
 
-        // Show sending state (نفس تصميمك)
-        submitBtn.innerHTML = `<span>${translations[currentLang].sending}</span>
-    <div class="loader w-5 h-5 border-2"></div>`;
-        submitBtn.disabled = true;
+    // Show sending state
+    submitBtn.innerHTML = `
+        <span class="font-semibold tracking-wide">${translations[currentLang].sending}</span>
+        <div class="sending-dots ml-2">
+            <span></span><span></span><span></span>
+        </div>`;
+    submitBtn.classList.add('btn-sending');
+    submitBtn.disabled = true;
 
     emailjs.send("service_vuh69ig", "template_oe2jugp", {
         name: name,
@@ -1957,6 +1988,7 @@ function handleFormSubmit(e) {
 
         // رجع الزرار لحالته الطبيعية
         submitBtn.innerHTML = originalText;
+        submitBtn.classList.remove('btn-sending');
         submitBtn.disabled = false;
         lucide.createIcons();
 
@@ -1970,6 +2002,7 @@ function handleFormSubmit(e) {
         console.error(error);
 
         submitBtn.innerHTML = originalText;
+        submitBtn.classList.remove('btn-sending');
         submitBtn.disabled = false;
         lucide.createIcons();
 
@@ -2043,7 +2076,9 @@ function setupScrollEffects() {
                     scrollToTop.classList.add('opacity-100');
                 } else {
                     scrollToTop.classList.add('translate-y-4');
+                    scrollToTop.classList.remove('opacity-100');
                 }
+
                 ticking = false;
             });
             ticking = true;
