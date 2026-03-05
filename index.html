@@ -17,7 +17,8 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Cairo:wght@300;400;500;600;700;800;900&display=swap&font-display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"></noscript>
     
     <script>
         tailwind.config = {
@@ -175,42 +176,55 @@
             animation: gradient 4s linear infinite;
         }
         
-        /* Background Effects */
-        .hero-bg {
-            background: radial-gradient(circle at 30% 20%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
-                        radial-gradient(circle at 70% 60%, rgba(139, 92, 246, 0.12) 0%, transparent 50%),
-                        radial-gradient(circle at 50% 80%, rgba(236, 72, 153, 0.1) 0%, transparent 50%);
-        }
-        
-        .tech-grid {
-            background-image: 
-                linear-gradient(rgba(59, 130, 246, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(59, 130, 246, 0.05) 1px, transparent 1px);
-            background-size: 40px 40px;
-        }
-        
-        /* Hover Effects */
-        .hover-lift {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .hover-lift:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 20px 50px rgba(59, 130, 246, 0.3);
-        }
-        
-        .hover-glow:hover {
-            box-shadow: 0 0 30px rgba(59, 130, 246, 0.6);
-        }
+       /* Background Effects - Optimized */
+.hero-bg {
+    background:
+        radial-gradient(circle at 30% 20%, rgba(59,130,246,0.12), transparent 55%),
+        radial-gradient(circle at 70% 60%, rgba(139,92,246,0.10), transparent 55%);
+}
 
-        /* hint GPU to promote animated elements for smoother rendering */
-        .animate-float,
-        .hover-lift,
-        .hover-glow,
-        .animate-slide-up,
-        .animate-slide-down,
-        .animate-scale-in {
-            will-change: transform, opacity;
-        }
+.tech-grid {
+    background-image:
+        linear-gradient(rgba(59,130,246,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(59,130,246,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+}
+      /* Hover Effects - Optimized */
+.hover-lift {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(59,130,246,0.25);
+}
+
+.hover-glow {
+    transition: box-shadow 0.25s ease;
+}
+
+.hover-glow:hover {
+    box-shadow: 0 0 12px rgba(59,130,246,0.4);
+}
+
+        /* GPU hint only for needed animations */
+.animate-float,
+.animate-slide-up,
+.animate-slide-down,
+.animate-scale-in {
+    will-change: transform;
+}
+
+/* Promote blurred background blobs to own layer to avoid repaints */
+.hero-blob {
+    will-change: transform;
+    contain: strict;
+}
+
+/* Contain layout for sections to reduce reflow scope */
+section {
+    contain: layout style;
+}
         
         /* Animated Gradient Border */
         .gradient-border {
@@ -328,9 +342,9 @@
             animation: spin 1s linear infinite;
         }
         
-        /* Smooth Transitions */
-        * {
-            transition: background-color 0.3s ease;
+        /* Smooth Transitions - only on elements that need it, not everything */
+        body, nav, section, .glass, .glass-card, .glass-dark {
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         /* Improve mobile responsiveness and touch performance */
@@ -364,25 +378,50 @@
 
         /* additional small-screen layout tweaks */
         @media (max-width: 640px) {
-            /* reposition scroll-to-top button so it doesn't overlap cards
-               and make it smaller */
-            #scrollToTop {
-                bottom: 5rem !important;
-                right: 1rem !important;
-                width: 3rem !important;
-                height: 3rem !important;
-            }
-            /* move toast to left bottom corner to avoid the button */
-            #toast {
-                left: 1rem !important;
-                right: auto !important;
-                bottom: 1rem !important;
-                max-width: calc(100% - 2rem);
-            }
+
+    /* Disable heavy animations */
+    .animate-float,
+    .animate-glow,
+    .animate-slide-up,
+    .animate-slide-down,
+    .animate-scale-in {
+        animation: none !important;
+        transform: none !important;
+    }
+    /* Simplify heavy backgrounds */
+    .tech-grid {
+        opacity: 0.05;
+    }
+
+    .hero-bg {
+        display: none;
+    }
+    /* Scroll to top button */
+    #scrollToTop {
+        bottom: 5rem !important;
+        right: 1rem !important;
+        width: 3rem !important;
+        height: 3rem !important;
+    }
+   
+          /* Toast */
+    #toast {
+        left: 1rem !important;
+        right: auto !important;
+        bottom: 1rem !important;
+        max-width: calc(100% - 2rem);
+    }
             #toastMessage {
-                font-size: 0.875rem;
-            }
-        }
+        font-size: 0.875rem;
+    }
+
+    /* Disable hover effects on touch devices */
+    .hover-lift:hover,
+    .hover-glow:hover {
+        transform: none;
+        box-shadow: none;
+    }
+}
 
         /* Light-mode text override: make most slate text utilities render as black in light mode */
         html:not(.dark) .text-slate-50,
@@ -407,7 +446,7 @@
             <div class="flex items-center justify-between h-20">
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer group" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 flex items-center justify-center shadow-lg shadow-blue-500/30 group-hover:shadow-blue-500/50 transition-all duration-300 group-hover:scale-110">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 flex items-center justify-center shadow-lg shadow-md group-hover:shadow-blue-500/50 transition-all duration-300 group-hover:scale-110">
                         <i data-lucide="brain" class="w-6 h-6 text-slate-900 dark:text-white"></i>
                     </div>
                     <div class="flex flex-col">
@@ -500,8 +539,8 @@ overflow-auto z-40 transition-colors duration-300">
     <section id="home" class="min-h-screen flex items-center justify-center px-6 bg-white dark:bg-gradient-to-br dark:from-slate-950 dark:via-slate-900 dark:to-indigo-950 relative overflow-hidden">
         <!-- Animated Background -->
         <div class="absolute inset-0 pointer-events-none z-0">
-            <div class="w-[800px] h-[800px] bg-gradient-to-br from-blue-600/20 via-purple-600/15 to-transparent rounded-full blur-3xl absolute left-[-300px] top-[-300px] animate-float"></div>
-            <div class="w-[600px] h-[600px] bg-gradient-to-tr from-purple-600/15 via-pink-500/10 to-transparent rounded-full blur-3xl absolute right-[-200px] bottom-[-200px] animate-float" style="animation-delay: 2s;"></div>
+            <div class="hero-blob w-[800px] h-[800px] bg-gradient-to-br from-blue-600/20 via-purple-600/15 to-transparent rounded-full blur-2xl absolute left-[-300px] top-[-300px] animate-float"></div>
+            <div class="hero-blob w-[600px] h-[600px] bg-gradient-to-tr from-purple-600/15 via-pink-500/10 to-transparent rounded-full blur-2xl absolute right-[-200px] bottom-[-200px] animate-float" style="animation-delay: 2s;"></div>
             <div class="tech-grid absolute inset-0 opacity-30"></div>
         </div>
         
@@ -530,11 +569,11 @@ overflow-auto z-40 transition-colors duration-300">
             
             <!-- CTA Buttons -->
             <div class="flex flex-wrap justify-center gap-4 pt-4 animate-slide-up" style="animation-delay: 0.6s;">
-                <a href="#projects" class="px-8 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 font-semibold hover:-translate-y-1 hover:shadow-2xl hover:shadow-blue-500/40 transition-all duration-300 ripple group">
+                <a href="#projects" class="px-8 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 font-semibold hover:-translate-y-1 hover:shadow-md hover:shadow-blue-500/40 transition-all duration-300 ripple group">
                     <span data-i18n="view_work">View My Work</span>
                     <i data-lucide="arrow-right" class="w-5 h-5 inline-block ml-2 group-hover:translate-x-1 transition-transform"></i>
                 </a>
-                <a href="Abdelrhman_Fahmy.pdf" download class="px-8 py-4 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 font-semibold hover:-translate-y-1 hover:shadow-2xl hover:shadow-purple-500/40 transition-all duration-300 ripple group">
+                <a href="Abdelrhman_Fahmy.pdf" download class="px-8 py-4 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 font-semibold hover:-translate-y-1 hover:shadow-md hover:shadow-purple-500/40 transition-all duration-300 ripple group">
                     <i data-lucide="download" class="w-5 h-5 inline-block mr-2 group-hover:-translate-y-1 transition-transform"></i>
                     <span data-i18n="download_cv">Download CV</span>
                 </a>
@@ -551,7 +590,7 @@ overflow-auto z-40 transition-colors duration-300">
                 <a href="https://www.linkedin.com/in/abdelrhmanfahmy1/" target="_blank" aria-label="LinkedIn" class="w-12 h-12 rounded-full glass hover:bg-white/10 flex items-center justify-center transition-all hover:scale-110 hover-glow">
                     <i data-lucide="linkedin" class="w-6 h-6"></i>
                 </a>
-                <a href="mailto:abdelrhmanfahmy40@gmail.com" aria-label="Email" class="w-12 h-12 rounded-full glass hover:bg-white/10 flex items-center justify-center transition-all hover:scale-110 hover-glow">
+                <a href="/cdn-cgi/l/email-protection#42232026272e302a2f232c24232a2f3b767202252f232b2e6c212d2f" aria-label="Email" class="w-12 h-12 rounded-full glass hover:bg-white/10 flex items-center justify-center transition-all hover:scale-110 hover-glow">
                     <i data-lucide="mail" class="w-6 h-6"></i>
                 </a>
             </div>
@@ -580,7 +619,7 @@ overflow-auto z-40 transition-colors duration-300">
                         <div class="glass-card rounded-3xl p-8 hover-lift">
                             <div class="w-full aspect-square rounded-2xl bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 flex items-center justify-center mb-8 overflow-hidden relative group">
                                 <div class="absolute inset-0 tech-grid opacity-20"></div>
-                                <div class="relative z-10 w-48 h-48 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform duration-500">
+                                <div class="relative z-10 w-48 h-48 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-500">
                                     <i data-lucide="user" class="w-24 h-24 text-slate-900 dark:text-white"></i>
                                 </div>
                             </div>
@@ -976,7 +1015,7 @@ overflow-auto z-40 transition-colors duration-300">
                                     </div>
                                     <div>
                                         <h5 class="text-slate-900 dark:text-white font-semibold text-lg mb-2" data-i18n="email">Email</h5>
-                                        <a href="mailto:abdelrhmanfahmy40@gmail.com" class="text-slate-400 hover:text-blue-400 transition-colors text-lg">abdelrhmanfahmy40@gmail.com</a>
+                                        <a href="/cdn-cgi/l/email-protection#f8999a9c9d948a909599969e99909581ccc8b89f95999194d69b9795" class="text-slate-400 hover:text-blue-400 transition-colors text-lg"><span class="__cf_email__" data-cfemail="4c2d2e2829203e24212d222a2d242135787c0c2b212d2520622f2321">[email&#160;protected]</span></a>
                                     </div>
                                 </div>
                                 
@@ -1013,7 +1052,7 @@ overflow-auto z-40 transition-colors duration-300">
                                     <a href="https://www.linkedin.com/in/abdelrhmanfahmy1/" target="_blank" class="w-14 h-14 rounded-2xl glass hover:bg-white/10 flex items-center justify-center transition-all hover:scale-110 hover-glow group">
                                         <i data-lucide="linkedin" class="w-6 h-6 group-hover:text-blue-400 transition-colors"></i>
                                     </a>
-                                    <a href="mailto:abdelrhmanfahmy40@gmail.com" class="w-14 h-14 rounded-2xl glass hover:bg-white/10 flex items-center justify-center transition-all hover:scale-110 hover-glow group">
+                                    <a href="/cdn-cgi/l/email-protection#6c0d0e0809001e04010d020a0d040115585c2c0b010d0500420f0301" class="w-14 h-14 rounded-2xl glass hover:bg-white/10 flex items-center justify-center transition-all hover:scale-110 hover-glow group">
                                         <i data-lucide="mail" class="w-6 h-6 group-hover:text-blue-400 transition-colors"></i>
                                     </a>
                                 </div>
@@ -1046,7 +1085,7 @@ overflow-auto z-40 transition-colors duration-300">
                             
                             
                             
-                            <button type="submit" class="w-full py-5 rounded-xl bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-slate-900 dark:text-white font-bold text-lg hover:shadow-2xl hover:shadow-blue-500/30 transition-all hover:-translate-y-1 flex items-center justify-center gap-3 ripple group">
+                            <button type="submit" class="w-full py-5 rounded-xl bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-slate-900 dark:text-white font-bold text-lg hover:shadow-md hover:shadow-md transition-all hover:-translate-y-1 flex items-center justify-center gap-3 ripple group">
                                 <span data-i18n="send_message">Send Message</span>
                                 <i data-lucide="send" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
                             </button>
@@ -1068,7 +1107,7 @@ overflow-auto z-40 transition-colors duration-300">
             <!-- Brand -->
             <div class="space-y-6">
                 <div class="flex items-center gap-3">
-                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 flex items-center justify-center shadow-lg shadow-blue-500/30">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 flex items-center justify-center shadow-lg shadow-md">
                         <i data-lucide="brain" class="w-6 h-6 text-slate-900 dark:text-white"></i>
                     </div>
                     <div>
@@ -1090,8 +1129,7 @@ overflow-auto z-40 transition-colors duration-300">
                class="w-10 h-10 rounded-lg border border-slate-300 dark:border-white/10 flex items-center justify-center hover:bg-slate-100 dark:hover:bg-white/10 transition">
                 <i data-lucide="linkedin" class="w-4 h-4"></i>
             </a>
-            <a href="mailto:abdelrhmanfahmy40@gmail.com"
-               class="w-10 h-10 rounded-lg border border-slate-300 dark:border-white/10 flex items-center justify-center hover:bg-slate-100 dark:hover:bg-white/10 transition">
+            <a href="/cdn-cgi/l/email-protection#9afbf8fefff6e8f2f7fbf4fcfbf2f7e3aeaadafdf7fbf3f6b4f9f5f7" class="w-10 h-10 rounded-lg border border-slate-300 dark:border-white/10 flex items-center justify-center hover:bg-slate-100 dark:hover:bg-white/10 transition">
                 <i data-lucide="mail" class="w-4 h-4"></i>
             </a>
         </div>
@@ -1182,7 +1220,7 @@ overflow-auto z-40 transition-colors duration-300">
     </footer>
 
     <!-- Toast Notification -->
-    <div id="toast" class="fixed bottom-8 right-8 glass-card px-8 py-5 rounded-2xl transform translate-y-32 opacity-0 transition-all duration-300 z-60 flex items-center gap-4 shadow-2xl">
+    <div id="toast" class="fixed bottom-8 right-8 glass-card px-8 py-5 rounded-2xl transform translate-y-32 opacity-0 transition-all duration-300 z-60 flex items-center gap-4 shadow-md">
         <div class="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center">
             <i data-lucide="check-circle" class="w-6 h-6 text-green-400"></i>
         </div>
@@ -1191,17 +1229,17 @@ overflow-auto z-40 transition-colors duration-300">
 
     <!-- Scroll to Top Button -->
    <button id="scrollToTop" 
-class="fixed bottom-24 right-8 w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center shadow-2xl shadow-blue-500/30 opacity-0 translate-y-4 transition-all duration-300 hover:scale-110 hover-glow z-40">
+class="fixed bottom-24 right-8 w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center shadow-md shadow-md opacity-0 translate-y-4 transition-all duration-300 hover:scale-110 hover-glow z-40">
 
         <i data-lucide="arrow-up" class="w-6 h-6 text-slate-900 dark:text-white"></i>
     </button>
 
     <!-- Scripts -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://unpkg.com/lucide@latest"></script>
     <script>
         
-        // Initialize Lucide Icons
-        lucide.createIcons();
+        // Initialize Lucide Icons - called after DOM ready since script is deferred
+        // (lucide.createIcons() is now called inside init())
         
         // Language Translations
         const translations = {
@@ -1399,6 +1437,7 @@ class="fixed bottom-24 right-8 w-14 h-14 rounded-2xl bg-gradient-to-br from-blue
         document.getElementById('moonIcon')?.classList.add('hidden');
     }
 
+    lucide.createIcons();
     updateLanguage();
     setupEventListeners();
     setupIntersectionObserver();
@@ -1625,43 +1664,44 @@ function handleFormSubmit(e) {
         
 // Scroll Effects
 function setupScrollEffects() {
-    // use passive listener for better scrolling performance on mobile
-    window.addEventListener('scroll', () => {
-        const navbar = document.getElementById('navbar');
-        const hero = document.getElementById('home');
+    let ticking = false;
+    const navbar = document.getElementById('navbar');
+    const hero = document.getElementById('home');
 
-        // Navbar shadow
-        if (window.scrollY > 50) {
-            navbar.classList.add('shadow-2xl');
-        } else {
-            navbar.classList.remove('shadow-2xl');
-        }
+    function onScroll() {
+        if (!ticking) {
+            requestAnimationFrame(() => {
+                const scrollY = window.scrollY;
 
-        // Scroll to top button: only show after the hero section has scrolled past
-        let threshold = 500;
-        if (hero) {
-            threshold = hero.offsetHeight;
+                // Navbar shadow
+                if (scrollY > 50) {
+                    navbar.classList.add('shadow-md');
+                } else {
+                    navbar.classList.remove('shadow-md');
+                }
+
+                // Scroll to top button
+                let threshold = 500;
+                if (hero) threshold = hero.offsetHeight;
+
+                const menuOpen = mobileMenu && !mobileMenu.classList.contains('hidden');
+                if (scrollY > threshold && !menuOpen) {
+                    scrollToTop.classList.remove('opacity-0', 'translate-y-4');
+                    scrollToTop.classList.add('opacity-100');
+                } else {
+                    scrollToTop.classList.add('translate-y-4');
+                }
+                ticking = false;
+            });
+            ticking = true;
         }
-        // also hide if mobile menu is open
-        const menuOpen = mobileMenu && !mobileMenu.classList.contains('hidden');
-        if (window.scrollY > threshold && !menuOpen) {
-            scrollToTop.classList.remove('opacity-0', 'translate-y-4');
-            scrollToTop.classList.add('opacity-100');
-        } else {
-            scrollToTop.classList.remove('opacity-100');
-            scrollToTop.classList.add('opacity-0', 'translate-y-4');
-        }
-    }, { passive: true });
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
 }
-   
-        // Run initialization
+
+        // Initialize Everything via DOMContentLoaded
         document.addEventListener('DOMContentLoaded', init);
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-<script>
-(function(){
-   emailjs.init("4wyO_xA_A_hdd-Muw");
-})();
-</script>
 </body>
 </html>
