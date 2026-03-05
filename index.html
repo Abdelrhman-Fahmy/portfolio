@@ -826,7 +826,7 @@ overflow-auto z-40 transition-colors duration-300">
                 <a href="https://www.linkedin.com/in/abdelrhmanfahmy1/" target="_blank" aria-label="LinkedIn" class="w-12 h-12 rounded-full glass hover:bg-white/10 flex items-center justify-center transition-all hover:scale-110 hover-glow">
                     <i data-lucide="linkedin" class="w-6 h-6"></i>
                 </a>
-                <a href="/cdn-cgi/l/email-protection#42232026272e302a2f232c24232a2f3b767202252f232b2e6c212d2f" aria-label="Email" class="w-12 h-12 rounded-full glass hover:bg-white/10 flex items-center justify-center transition-all hover:scale-110 hover-glow">
+                <a href="abdelrhmanfahmy40@gmail.com" aria-label="Email" class="w-12 h-12 rounded-full glass hover:bg-white/10 flex items-center justify-center transition-all hover:scale-110 hover-glow">
                     <i data-lucide="mail" class="w-6 h-6"></i>
                 </a>
             </div>
@@ -1267,7 +1267,7 @@ overflow-auto z-40 transition-colors duration-300">
                                     </div>
                                     <div>
                                         <h5 class="text-slate-900 dark:text-white font-semibold text-lg mb-2" data-i18n="email">Email</h5>
-                                        <a href="/cdn-cgi/l/email-protection#f8999a9c9d948a909599969e99909581ccc8b89f95999194d69b9795" class="text-slate-400 hover:text-blue-400 transition-colors text-lg"><span class="__cf_email__" data-cfemail="4c2d2e2829203e24212d222a2d242135787c0c2b212d2520622f2321">[email&#160;protected]</span></a>
+                                        <a href="mailto:abdelrhmanfahmy40@gmail.com" class="text-slate-400 hover:text-blue-400 transition-colors text-lg">abdelrhmanfahmy40@gmail.com</a>
                                     </div>
                                 </div>
                                 
@@ -1278,7 +1278,7 @@ overflow-auto z-40 transition-colors duration-300">
                                     </div>
                                     <div>
                                         <h5 class="text-slate-900 dark:text-white font-semibold text-lg mb-2" data-i18n="phone">phone</h5>
-                                        <p class="text-slate-400 text-lg" data-i18n="phone_value">+201062503478</p>
+                                        <a href="tel:+201062503478" class="text-slate-400 hover:text-blue-400 transition-colors text-lg" data-i18n="phone_value">+201062503478</a>
                                     </div>
                                 </div>
                                 
@@ -1612,7 +1612,7 @@ class="fixed bottom-24 right-8 w-14 h-14 rounded-2xl bg-gradient-to-br from-blue
                 get_in_touch: "Get In Touch",
                 about_subtitle: "About Me",
                 about_title: "Passionate About",
-                about_intro: "Building the future with artificial intelligence and machine learning",
+                about_intro: "Building the future with artificial intelligence and machine learning.",
                 year_started: "Journey Started",
                 projects_completed: "Projects Done",
                 skills_mastered: "Skills",
@@ -1663,6 +1663,7 @@ class="fixed bottom-24 right-8 w-14 h-14 rounded-2xl bg-gradient-to-br from-blue
                 contact_info: "Contact Information",
                 email: "Email",
                 phone: "Phone",
+                
                 availability: "Availability",
                 availability_value: "Open for internships & freelance",
                 follow_me: "Follow Me",
@@ -1695,7 +1696,7 @@ class="fixed bottom-24 right-8 w-14 h-14 rounded-2xl bg-gradient-to-br from-blue
                 get_in_touch: "تواصل معي",
                 about_subtitle: "عني",
                 about_title: "شغوف بـ",
-                about_intro: "بناء المستقبل باستخدام الذكاء الاصطناعي وتعلم الآلة",
+                about_intro: "بناء المستقبل باستخدام الذكاء الاصطناعي وتعلم الآلة.",
                 year_started: "بداية الرحلة",
                 projects_completed: "مشروع منجز",
                 skills_mastered: "مهارة",
@@ -1941,10 +1942,10 @@ function handleFormSubmit(e) {
     const subject = contactForm.querySelectorAll('input[type="text"]')[1].value;
     const message = contactForm.querySelector('textarea').value;
 
-    // Show sending state (نفس تصميمك)
-    submitBtn.innerHTML = `<span>${translations[currentLang].sending}</span>
-                           <div class="loader w-5 h-5 border-2"></div>`;
-    submitBtn.disabled = true;
+        // Show sending state (نفس تصميمك)
+        submitBtn.innerHTML = `<span>${translations[currentLang].sending}</span>
+    <div class="loader w-5 h-5 border-2"></div>`;
+        submitBtn.disabled = true;
 
     emailjs.send("service_vuh69ig", "template_oe2jugp", {
         name: name,
